@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Teko", sans-serif;
+
+  --color-pubg-yellow: #e5a823; /* The classic Battlegrounds accent color */
+  --color-pubg-dark: #0a0a0a;
+  --color-pubg-panel: #1a1a1a;
+  --color-pubg-text: #e5e5e5;
+  --color-pubg-title: #aaa;
+}
+
+body {
+  background-color: var(--color-pubg-panel);
+  color: var(--color-pubg-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
