@@ -63,7 +63,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div className="hidden md:flex gap-6 text-md">
+        <div className="hidden md:flex gap-6 text-2xl">
           <a
             href="https://github.com/AungZawMyo97"
             target="_blank"
