@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -33,36 +32,54 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <div className="text-2xl font-bold tracking-wider">
-          <Link to="/" onClick={closeMenu}>
+          <a href="#basecamp" onClick={closeMenu}>
             AZM{" "}
             <span className="text-pubg-yellow inline-block hover:-translate-y-1 transform duration-200">
               nostaLgic
             </span>
-          </Link>
+          </a>
         </div>
+
         <ul className="hidden md:flex gap-8 text-md">
           <li>
-            <Link to="/" className="hover:text-pubg-yellow transition-colors">
-              Home
-            </Link>
+            <a href="/" className="hover:text-pubg-yellow transition-colors">
+              Basecamp
+            </a>
           </li>
           <li>
-            <Link
-              to="/about"
+            <a
+              href="#loadout"
               className="hover:text-pubg-yellow transition-colors"
             >
-              About
-            </Link>
+              Loadout
+            </a>
           </li>
           <li>
-            <Link
-              to="/projects"
+            <a
+              href="#service-record"
               className="hover:text-pubg-yellow transition-colors"
             >
-              Projects
-            </Link>
+              Service Record
+            </a>
+          </li>
+          <li>
+            <a
+              href="#deployments"
+              className="hover:text-pubg-yellow transition-colors"
+            >
+              Deployments
+            </a>
+          </li>
+          <li>
+            <a
+              href="#comms"
+              className="hover:text-pubg-yellow transition-colors"
+            >
+              Comms
+            </a>
           </li>
         </ul>
+
         <div className="hidden md:flex gap-6 text-2xl">
           <a
             href="https://github.com/AungZawMyo97"
@@ -89,37 +106,49 @@ const Navbar = () => {
           <FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
         </button>
 
-        {/* Mobile Menu Button */}
         <div
-          className={`md:hidden absolute top-full left-0 w-full bg-pubg-panel border-b border-pubg-dark shadow-xl flex flex-col items-start px-6 py-6 gap-6 text-md overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`md:hidden absolute top-full left-0 w-full bg-pubg-panel border-b border-pubg-dark shadow-xl flex flex-col items-start px-6 gap-6 text-md overflow-hidden transition-all duration-500 ease-in-out ${
             isMenuOpen
               ? "max-h-100 py-6 opacity-100 border-b "
               : "max-h-0 py-0 opacity-0 border-b-0"
           }`}
         >
-          <Link
-            to="/"
+          <a
+            href="#basecamp"
             onClick={closeMenu}
             className="hover:text-pubg-yellow transition-colors"
           >
-            Home
-          </Link>
-          <Link
-            to="/about"
+            Basecamp
+          </a>
+          <a
+            href="#loadout"
             onClick={closeMenu}
             className="hover:text-pubg-yellow transition-colors"
           >
-            About
-          </Link>
-          <Link
-            to="/projects"
+            Loadout
+          </a>
+          <a
+            href="#service-record"
             onClick={closeMenu}
             className="hover:text-pubg-yellow transition-colors"
           >
-            Projects
-          </Link>
+            Service Record
+          </a>
+          <a
+            href="#deployments"
+            onClick={closeMenu}
+            className="hover:text-pubg-yellow transition-colors"
+          >
+            Deployments
+          </a>
+          <a
+            href="#comms"
+            onClick={closeMenu}
+            className="hover:text-pubg-yellow transition-colors"
+          >
+            Comms
+          </a>
 
-          {/* Mobile Socials */}
           <div className="flex gap-8 mt-4">
             <a
               href="https://github.com/AungZawMyo97"

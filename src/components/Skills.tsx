@@ -3,12 +3,12 @@ import { useInView } from "react-intersection-observer";
 
 const Skills = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 
   return (
-    <section ref={ref} className="bg-pubg-dark py-20 px-6">
+    <section ref={ref} className="bg-pubg-dark py-20 px-6" id="loadout">
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
         <div className="max-w-3xl flex flex-col items-center gap-6">
           <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">

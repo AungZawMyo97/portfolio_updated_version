@@ -14,7 +14,7 @@ const toolsData = [
 
 const Tools = () => {
   return (
-    <section className="bg-pubg-yellow py-10 px-6">
+    <section className="bg-pubg-panel py-10 px-6">
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-6">
         <h2 className="text-5xl lg:text-6xl text-center font-bold tracking-wider text-pubg-text uppercase">
           Tools I'm familiar with
