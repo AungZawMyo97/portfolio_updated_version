@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <div className="text-2xl font-bold tracking-wider">
-          <a href="#basecamp" onClick={closeMenu}>
+          <a href="/" onClick={closeMenu}>
             AZM{" "}
             <span className="text-pubg-yellow inline-block hover:-translate-y-1 transform duration-200">
               nostaLgic
@@ -42,41 +43,54 @@ const Navbar = () => {
 
         <ul className="hidden md:flex gap-8 text-md">
           <li>
-            <a href="/" className="hover:text-pubg-yellow transition-colors">
+            <Link
+              to="/"
+              smooth={true}
+              duration={500}
+              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
+            >
               Basecamp
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#loadout"
-              className="hover:text-pubg-yellow transition-colors"
+            <Link
+              to="loadout"
+              smooth={true}
+              duration={500}
+              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
             >
               Loadout
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#service-record"
-              className="hover:text-pubg-yellow transition-colors"
+            <Link
+              to="service-record"
+              smooth={true}
+              duration={500}
+              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
             >
               Service Record
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#deployments"
-              className="hover:text-pubg-yellow transition-colors"
+            <Link
+              to="deployments"
+              smooth={true}
+              duration={500}
+              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
             >
               Deployments
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#comms"
-              className="hover:text-pubg-yellow transition-colors"
+            <Link
+              to="comms"
+              smooth={true}
+              duration={500}
+              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
             >
               Comms
-            </a>
+            </Link>
           </li>
         </ul>
 

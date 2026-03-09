@@ -4,6 +4,7 @@ import Tools from "../components/Tools";
 import GetInTouch from "../components/GetInTouch";
 import ExperienceTimeline from "../components/ExperienceTimeline";
 import Education from "../components/Education";
+import Projects from "../components/Projects";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Skills />
       <Tools />
       <ExperienceTimeline />
+      <Projects />
       <Education />
       <GetInTouch />
     </>

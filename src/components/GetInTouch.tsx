@@ -20,7 +20,7 @@ const GetInTouch = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-2 w-full">
-          <div className="bg-pubg-panel p-8 md:p-12 rounded-sm border border-pubg-yellow shadow-xl flex flex-col gap-8">
+          <div className="bg-pubg-panel p-8 md:p-12 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-2 transition-transform duration-300 flex flex-col gap-8">
             <div>
               <h3 className="text-3xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-4">
                 Comms Center
@@ -68,7 +68,7 @@ const GetInTouch = () => {
               </ul>
             </div>
           </div>
-          <div className="bg-pubg-panel p-8 md:p-12 rounded-sm border border-pubg-yellow shadow-xl">
+          <div className="bg-pubg-panel p-8 md:p-12 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-2 transition-transform duration-300">
             <form className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-pubg-text font-semibold uppercase tracking-wide text-sm">
