@@ -52,7 +52,7 @@ const ExperienceTimeline = () => {
   return (
     <section className="bg-pubg-dark py-20 px-6" id="service-record">
       <div className="max-w-4xl mx-auto flex flex-col gap-12">
-        <div className="text-center md:text-left mb-8">
+        <div className="text-center mb-8">
           <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
             Service Record
           </h2>

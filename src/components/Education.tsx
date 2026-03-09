@@ -26,9 +26,9 @@ const certificationsData = [
 
 const Education = () => {
   return (
-    <section className="bg-pubg-dark py-20 px-6">
+    <section className="bg-pubg-panel py-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
-        <div className="text-center md:text-left">
+        <div className="text-center">
           <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
             Academy Record
           </h2>
