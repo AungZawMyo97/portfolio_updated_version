@@ -48,7 +48,7 @@ const Hero = () => {
           <ul className="flex gap-8 justify-center lg:justify-end text-4xl mt-4">
             <li>
               <a
-                href="https://www.linkedin.com/in/aungzawmyo/"
+                href="https://www.facebook.com/jeraxthefk/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-pubg-text hover:text-pubg-yellow transitio-colors inline-block hover:translate-y-2 transform duration-300"
@@ -58,7 +58,7 @@ const Hero = () => {
             </li>
             <li>
               <a
-                href="https://www.linkedin.com/in/aungzawmyo/"
+                href="https://www.youtube.com/@nostaLgic_pubg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-pubg-text hover:text-pubg-yellow transitio-colors inline-block hover:translate-y-2 transform duration-300"
@@ -68,7 +68,7 @@ const Hero = () => {
             </li>
             <li>
               <a
-                href="https://www.linkedin.com/in/aungzawmyo/"
+                href="https://discord.com/users/938751367978291240"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-pubg-text hover:text-pubg-yellow transitio-colors inline-block hover:translate-y-2 transform duration-300"
