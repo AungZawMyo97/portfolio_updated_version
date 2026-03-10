@@ -1,8 +1,42 @@
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const GetInTouch = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const sendEmail = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSending(true);
+    setStatusMessage("");
+
+    if (!form.current) return;
+
+    emailjs
+      .sendForm(
+        "portfolio_email",
+        "template_9khwfpx",
+        form.current,
+        "jP9jfjKP72QWOO2Ix",
+      )
+      .then(
+        () => {
+          setStatusMessage("Transmission Sent Successful! I will reply soon.");
+          setIsSending(false);
+          form.current?.reset();
+        },
+        (error) => {
+          console.log(error.text);
+          setStatusMessage("Transmissino failed. Please try my direct email.");
+          setIsSending(false);
+        },
+      );
+  };
+
   return (
     <section className="bg-pubg-panel py-20 px-6" id="comms">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
@@ -69,13 +103,18 @@ const GetInTouch = () => {
             </div>
           </div>
           <div className="bg-pubg-panel p-8 md:p-12 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-2 transition-transform duration-300">
-            <form className="flex flex-col gap-6">
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="flex flex-col gap-6"
+            >
               <div className="flex flex-col gap-2">
                 <label className="text-pubg-text font-semibold uppercase tracking-wide text-sm">
                   Name
                 </label>
                 <input
                   type="text"
+                  name="user_name"
                   className="bg-pubg-dark border border-gray-700 text-pubg-text p-3 rounded-sm focus:outline-none focus:border-pubg-yellow transition-colors"
                   placeholder="Please Enter Your Name"
                 />
@@ -87,6 +126,7 @@ const GetInTouch = () => {
                 </label>
                 <input
                   type="email"
+                  name="user_email"
                   className="bg-pubg-dark border border-gray-700 text-pubg-text p-3 rounded-sm focus:outline-none focus:border-pubg-yellow transition-colors"
                   placeholder="john@example.com"
                 />
@@ -97,17 +137,28 @@ const GetInTouch = () => {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  required
                   rows={4}
                   className="bg-pubg-dark border border-gray-700 text-pubg-text p-3 rounded-sm focus:outline-none focus:border-pubg-yellow transition-colors resize-none"
                   placeholder="Let's build something..."
                 ></textarea>
               </div>
 
+              {statusMessage && (
+                <p
+                  className={`text-sm font-bold tracking-wider ${statusMessage.includes("Successful") ? "text-emerald-400" : "text-red-500"}`}
+                >
+                  {statusMessage}
+                </p>
+              )}
+
               <button
-                type="button"
+                type="submit"
+                disabled={isSending}
                 className="mt-4 bg-pubg-yellow text-pubg-dark font-bold text-lg uppercase tracking-widest py-4 px-8 rounded-sm hover:bg-yellow-500 transition-colors hover:-translate-y-1 transform duration-300"
               >
-                Send Transmission
+                {isSending ? "Sending..." : "Send Transmission"}
               </button>
             </form>
           </div>

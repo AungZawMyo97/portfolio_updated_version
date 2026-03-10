@@ -5,6 +5,7 @@ import GetInTouch from "../components/GetInTouch";
 import ExperienceTimeline from "../components/ExperienceTimeline";
 import Education from "../components/Education";
 import Projects from "../components/Projects";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Projects />
       <Education />
       <GetInTouch />
+      <Footer />
     </>
   );
 };

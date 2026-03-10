@@ -42,7 +42,7 @@ const projectsData = [
   },
   {
     id: 3,
-    title: "King Of Coffee Pattaya",
+    title: "Coffee Shop Template",
     description:
       "A beautiful and eyecatching website for local coffee shop, designed based on the bamboo theme.",
     techStack: [
