@@ -5,6 +5,8 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import ScrimManagerImg from "../assets/scrim-manager.png";
 import SdlBalanceTrackerImg from "../assets/sdl_balance_tracker.png";
 import KingOfCoffeeImg from "../assets/king_of_coffee.png";
+import SdlInOutTrackerImg from "../assets/sdl-daily-inbound-outbound.png";
+import SdlWaterFactoryImg from "../assets/sdl-drinking-water-factory.png";
 
 const projectsData = [
   {
@@ -14,7 +16,7 @@ const projectsData = [
       "A high-performance admin dashboard for exchange system to calculate daily exchange transactions and record In and Out transactions, along with profit calculation.",
     techStack: [
       "Next.js",
-      "Postgres SQL",
+      "PostgreSQL",
       "TypeScript",
       "JWT",
       "Authentication",
@@ -32,7 +34,7 @@ const projectsData = [
       "Next.js",
       "Tailwind CSS",
       "TypeScript",
-      "Postgres SQL",
+      "PostgreSQL",
       "Authentication",
       "JWT",
     ],
@@ -55,6 +57,32 @@ const projectsData = [
     githubLink: "https://github.com/AungZawMyo97/king_of_coffee_pratamnak_soi5",
     liveLink: "#",
     image: KingOfCoffeeImg,
+  },
+  {
+    id: 4,
+    title: "SDL Daily Inbound And Outbound Tracker",
+    description:
+      "A tracking system for daily in and out balances supporting both MMK and THB currencies. Includes dynamic reporting features like downloading Excel, generating tables, and calculating total profit or loss.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    githubLink: "https://github.com/AungZawMyo97/sdl-daily-inbound-outbound",
+    liveLink: "#",
+    image: SdlInOutTrackerImg,
+  },
+  {
+    id: 5,
+    title: "SDL Drinking Water Factory Management",
+    description:
+      "A dashboard where the user can record daily drinking water sales, track expenses, and close the balance daily to determine if the day was profitable.",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "PostgreSQL",
+    ],
+    githubLink: "https://github.com/AungZawMyo97/sdl-drinking-water-factory",
+    liveLink: "#",
+    image: SdlWaterFactoryImg,
   },
 ];
 

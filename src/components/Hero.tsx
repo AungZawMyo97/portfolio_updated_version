@@ -25,7 +25,7 @@ const Hero = () => {
             <span className="text-pubg-yellow">
               React.js, Node.js and Next.js
             </span>
-            . Experienced in cloud deployment and modern development workfl ows,
+            . Experienced in cloud deployment and modern development workflows,
             leveraging AI-assisted tools to accelerate delivery and improve code
             quality.
           </p>
