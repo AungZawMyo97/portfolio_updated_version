@@ -22,6 +22,13 @@ const certificationsData = [
     link: "https://kmd.edu.mm/",
     date: "2015",
   },
+  {
+    id: 3,
+    title: "Claude Code in Action",
+    issuer: "Anthropic",
+    link: "https://verify.skilljar.com/c/igxjqznfkbw4",
+    date: "2023",
+  },
 ];
 
 const Education = () => {
