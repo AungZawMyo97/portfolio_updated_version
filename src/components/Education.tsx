@@ -27,6 +27,13 @@ const certificationsData = [
     title: "Claude Code in Action",
     issuer: "Anthropic",
     link: "https://verify.skilljar.com/c/igxjqznfkbw4",
+    date: "2026",
+  },
+  {
+    id: 4,
+    title: "React Basics From Coursera",
+    issuer: "Coursera",
+    link: "https://www.coursera.org/account/accomplishments/verify/8L9AGQW4GSV7",
     date: "2023",
   },
 ];
