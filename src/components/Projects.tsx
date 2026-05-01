@@ -7,6 +7,7 @@ import SdlBalanceTrackerImg from "../assets/sdl_balance_tracker.png";
 import KingOfCoffeeImg from "../assets/king_of_coffee.png";
 import SdlInOutTrackerImg from "../assets/sdl-daily-inbound-outbound.png";
 import SdlWaterFactoryImg from "../assets/sdl-drinking-water-factory.png";
+import NextJsWeatherApp from "../assets/nextjs-weather-app.png";
 
 const projectsData = [
   {
@@ -14,13 +15,7 @@ const projectsData = [
     title: "Daily Balance Tracker",
     description:
       "A high-performance admin dashboard for exchange system to calculate daily exchange transactions and record In and Out transactions, along with profit calculation.",
-    techStack: [
-      "Next.js",
-      "PostgreSQL",
-      "TypeScript",
-      "JWT",
-      "Authentication",
-    ],
+    techStack: ["Next.js", "PostgreSQL", "TypeScript", "JWT", "Authentication"],
     githubLink: "https://github.com/AungZawMyo97/sandar_lin_balance_tracker",
     liveLink: "#",
     image: SdlBalanceTrackerImg,
@@ -83,6 +78,16 @@ const projectsData = [
     githubLink: "https://github.com/AungZawMyo97/sdl-drinking-water-factory",
     liveLink: "#",
     image: SdlWaterFactoryImg,
+  },
+  {
+    id: 6,
+    title: "Next.js Weather Forecast App",
+    description:
+      "A study purpose Next.js application that fetches weather data from a public API and displays it in a user-friendly interface, allowing users to check the current weather and forecast for their location.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "OpenWeather API"],
+    githubLink: "https://github.com/AungZawMyo97/nextjs-weather-forecast",
+    liveLink: "https://nextjs-weather-forecast-beta.vercel.app/",
+    image: NextJsWeatherApp,
   },
 ];
 
