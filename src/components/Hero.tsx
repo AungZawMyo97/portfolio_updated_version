@@ -8,7 +8,7 @@ import HeroImage from "../assets/hero.png";
 
 const Hero = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-10 lg:py-30">
+    <section id="basecamp" className="max-w-7xl mx-auto px-6 py-10 lg:py-30">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
         <div className="order-2 lg:order-1 flex flex-col gap-6 text-center lg:text-left">
           <h1 className="text-3xl font-bold tracking-wide">

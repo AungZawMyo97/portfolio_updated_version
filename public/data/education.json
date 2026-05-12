@@ -1,0 +1,40 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "degree": "Bachelor's Degree",
+      "institution": "Yangon Technological University (YTU)",
+      "date": "2014 - 2020"
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "title": "Dynamic Web Development with PHP",
+      "issuer": "GUSTO College",
+      "link": "https://www.gusto-education.com/",
+      "date": "2019"
+    },
+    {
+      "id": 2,
+      "title": "OOP Programming with C++",
+      "issuer": "KMD College",
+      "link": "https://kmd.edu.mm/",
+      "date": "2015"
+    },
+    {
+      "id": 3,
+      "title": "Claude Code in Action",
+      "issuer": "Anthropic",
+      "link": "https://verify.skilljar.com/c/igxjqznfkbw4",
+      "date": "2026"
+    },
+    {
+      "id": 4,
+      "title": "React Basics From Coursera",
+      "issuer": "Coursera",
+      "link": "https://www.coursera.org/account/accomplishments/verify/8L9AGQW4GSV7",
+      "date": "2023"
+    }
+  ]
+}

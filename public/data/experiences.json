@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "role": ".NET Core Developer",
+    "company": "Recsite Design",
+    "website": "https://www.recsitedesign.com/",
+    "date": "June 2024 - Present",
+    "description": "Leading the end-to-end development and deployment of enterprise recruitment websites using Umbraco CMS and .NET Core.",
+    "keyResponsibilities": [
+      "Architected custom Umbraco backoffice sections and data fields, seamlessly integrating frontend assets into dynamic Razor views.",
+      "Managed the complete deployment pipeline, handling initial IIS test server configurations, client update iterations, and final live production rollouts.",
+      "Acted as the primary technical lead on the Support Desk, translating complex client requirements into actionable technical solutions and resolving defects."
+    ],
+    "techStack": [
+      "C#",
+      ".NET Core",
+      "Umbraco CMS",
+      "Razor Pages",
+      "IIS",
+      "Microsoft SQL Server"
+    ]
+  },
+  {
+    "id": 2,
+    "role": "Backend Developer / .NET Specialist",
+    "company": "uab Bank Myanmar",
+    "website": "https://www.uab.com.mm/",
+    "date": "March 2022 - June 2024",
+    "description": "Engineered and maintained mission-critical backend APIs and MVC web portals for major fintech applications, including uabpay and multiple partner mobile wallets.",
+    "keyResponsibilities": [
+      "Spearheaded the end-to-end integration of the AungBarLay lottery payment system into uabpay, handling third-party API communication, dynamic user registration, and secure ticket transactions.",
+      "Collaborated heavily with the Core Banking team to integrate secure transaction APIs and engineered an automated Balance Confirmation system with dynamic PDF generation and email delivery.",
+      "Developed complex, time-sensitive campaign logic for a user referral reward system that calculated points on monthly, quarterly, and yearly cycles.",
+      "Maintained and optimized high-volume financial transaction APIs, ensuring absolute data integrity, correct workflow states, and accurate balance updates across merchant and consumer wallets."
+    ],
+    "techStack": [
+      "C#",
+      ".NET Framework",
+      ".NET Core",
+      "ASP.NET MVC",
+      "RESTful APIs",
+      "IIS",
+      "MySQL",
+      "AWS"
+    ]
+  }
+]

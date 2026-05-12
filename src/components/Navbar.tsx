@@ -4,6 +4,29 @@ import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-scroll";
 
+const NAV_ITEMS = [
+  {
+    label: "Basecamp",
+    target: "basecamp",
+  },
+  {
+    label: "Loadout",
+    target: "loadout",
+  },
+  {
+    label: "Service Record",
+    target: "service-record",
+  },
+  {
+    label: "Deployments",
+    target: "deployments",
+  },
+  {
+    label: "Comms",
+    target: "comms",
+  },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,56 +65,18 @@ const Navbar = () => {
         </div>
 
         <ul className="hidden md:flex gap-8 text-md">
-          <li>
-            <Link
-              to="/"
-              smooth={true}
-              duration={500}
-              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
-            >
-              Basecamp
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="loadout"
-              smooth={true}
-              duration={500}
-              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
-            >
-              Loadout
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="service-record"
-              smooth={true}
-              duration={500}
-              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
-            >
-              Service Record
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="deployments"
-              smooth={true}
-              duration={500}
-              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
-            >
-              Deployments
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="comms"
-              smooth={true}
-              duration={500}
-              className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
-            >
-              Comms
-            </Link>
-          </li>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.target}>
+              <Link
+                to={item.target}
+                smooth={true}
+                duration={500}
+                className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className="hidden md:flex gap-6 text-2xl">
@@ -127,41 +112,18 @@ const Navbar = () => {
               : "max-h-0 py-0 opacity-0 border-b-0"
           }`}
         >
-          <a
-            href="#basecamp"
-            onClick={closeMenu}
-            className="hover:text-pubg-yellow transition-colors"
-          >
-            Basecamp
-          </a>
-          <a
-            href="#loadout"
-            onClick={closeMenu}
-            className="hover:text-pubg-yellow transition-colors"
-          >
-            Loadout
-          </a>
-          <a
-            href="#service-record"
-            onClick={closeMenu}
-            className="hover:text-pubg-yellow transition-colors"
-          >
-            Service Record
-          </a>
-          <a
-            href="#deployments"
-            onClick={closeMenu}
-            className="hover:text-pubg-yellow transition-colors"
-          >
-            Deployments
-          </a>
-          <a
-            href="#comms"
-            onClick={closeMenu}
-            className="hover:text-pubg-yellow transition-colors"
-          >
-            Comms
-          </a>
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.target}
+              to={item.target}
+              smooth={true}
+              duration={500}
+              onClick={closeMenu}
+              className="hover:text-pubg-yellow transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
 
           <div className="flex gap-8 mt-4">
             <a

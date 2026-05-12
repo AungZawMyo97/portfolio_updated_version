@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "VS Code",
+    "iconClass": "devicon-vscode-plain colored"
+  },
+  {
+    "id": 2,
+    "name": "Visual Studio",
+    "iconClass": "devicon-visualstudio-plain colored"
+  },
+  {
+    "id": 3,
+    "name": "Postman",
+    "iconClass": "devicon-postman-plain colored"
+  },
+  {
+    "id": 4,
+    "name": "SQL Server",
+    "iconClass": "devicon-microsoftsqlserver-plain colored"
+  },
+  {
+    "id": 5,
+    "name": "MySQL",
+    "iconClass": "devicon-mysql-original colored"
+  },
+  {
+    "id": 6,
+    "name": "Figma",
+    "iconClass": "devicon-figma-plain"
+  },
+  {
+    "id": 7,
+    "name": "Git",
+    "iconClass": "devicon-git-plain colored"
+  },
+  {
+    "id": 8,
+    "name": "GitHub",
+    "iconClass": "devicon-github-original"
+  },
+  {
+    "id": 9,
+    "name": "GitLab",
+    "iconClass": "devicon-gitlab-plain-wordmark"
+  },
+  {
+    "id": 10,
+    "name": "AWS",
+    "iconClass": "devicon-amazonwebservices-plain-wordmark"
+  }
+]

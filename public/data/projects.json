@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "title": "Daily Balance Tracker",
+    "description": "A high-performance admin dashboard for exchange system to calculate daily exchange transactions and record In and Out transactions, along with profit calculation.",
+    "techStack": ["Next.js", "PostgreSQL", "TypeScript", "JWT", "Authentication"],
+    "githubLink": "https://github.com/AungZawMyo97/sandar_lin_balance_tracker",
+    "liveLink": "#",
+    "image": "/projects/sdl_balance_tracker.png"
+  },
+  {
+    "id": 2,
+    "title": "Esports Scrim Manager",
+    "description": "An online management tool for Esports admin in PUBG: Battlegrounds and PUBG: Mobile which can calculate match ranking points just by uploading match result screenshots.",
+    "techStack": [
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "PostgreSQL",
+      "Authentication",
+      "JWT"
+    ],
+    "githubLink": "https://github.com/AungZawMyo97/scrim-manager",
+    "liveLink": "https://scrim-manager-mm.vercel.app/",
+    "image": "/projects/scrim-manager.png"
+  },
+  {
+    "id": 3,
+    "title": "Coffee Shop Template",
+    "description": "A beautiful and eyecatching website for local coffee shop, designed based on the bamboo theme.",
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Lucide React",
+      "Framer Motion"
+    ],
+    "githubLink": "https://github.com/AungZawMyo97/king_of_coffee_pratamnak_soi5",
+    "liveLink": "#",
+    "image": "/projects/king_of_coffee.png"
+  },
+  {
+    "id": 4,
+    "title": "SDL Daily Inbound And Outbound Tracker",
+    "description": "A tracking system for daily in and out balances supporting both MMK and THB currencies. Includes dynamic reporting features like downloading Excel, generating tables, and calculating total profit or loss.",
+    "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    "githubLink": "https://github.com/AungZawMyo97/sdl-daily-inbound-outbound",
+    "liveLink": "#",
+    "image": "/projects/sdl-daily-inbound-outbound.png"
+  },
+  {
+    "id": 5,
+    "title": "SDL Drinking Water Factory Management",
+    "description": "A dashboard where the user can record daily drinking water sales, track expenses, and close the balance daily to determine if the day was profitable.",
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "PostgreSQL"
+    ],
+    "githubLink": "https://github.com/AungZawMyo97/sdl-drinking-water-factory",
+    "liveLink": "#",
+    "image": "/projects/sdl-drinking-water-factory.png"
+  },
+  {
+    "id": 6,
+    "title": "Next.js Weather Forecast App",
+    "description": "A study purpose Next.js application that fetches weather data from a public API and displays it in a user-friendly interface, allowing users to check the current weather and forecast for their location.",
+    "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "OpenWeather API"],
+    "githubLink": "https://github.com/AungZawMyo97/nextjs-weather-forecast",
+    "liveLink": "https://nextjs-weather-forecast-beta.vercel.app/",
+    "image": "/projects/nextjs-weather-app.png"
+  },
+  {
+    "id": 7,
+    "title": "My PM",
+    "description": "A personal project management app built to track project stages like pending review, in progress, and completed. It is made for personal use without team features, and includes a monthly graph for in-progress and completed projects. Demo login: Username: testuser1@mypm.com, PSW: Testing123!@#",
+    "techStack": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS v4",
+      "Clerk",
+      "PostgreSQL",
+      "Prisma"
+    ],
+    "githubLink": "https://github.com/AungZawMyo97/my-personal-pm",
+    "liveLink": "https://my-personal-pm.vercel.app/",
+    "image": "/projects/my-pm.png"
+  }
+]
