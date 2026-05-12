@@ -63,7 +63,19 @@ type CertificationsCardProps = {
   certifications: Certification[];
 };
 
+const getCertificationYear = (certification: Certification) => {
+  const yearMatch = certification.date.match(/\d{4}/);
+
+  return yearMatch ? Number(yearMatch[0]) : 0;
+};
+
 const CertificationsCard = ({ certifications }: CertificationsCardProps) => {
+  const sortedCertifications = [...certifications].sort(
+    (currentCertification, nextCertification) =>
+      getCertificationYear(nextCertification) -
+      getCertificationYear(currentCertification),
+  );
+
   return (
     <div className="bg-pubg-panel p-8 md:p-10 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
       <h3 className="text-3xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
@@ -71,7 +83,7 @@ const CertificationsCard = ({ certifications }: CertificationsCardProps) => {
       </h3>
 
       <div className="flex flex-col gap-6">
-        {certifications.map((cert) => (
+        {sortedCertifications.map((cert) => (
           <div
             key={cert.id}
             className="flex flex-col gap-2 pb-6 border-b border-gray-700 last:border-0 last:pb-0"
