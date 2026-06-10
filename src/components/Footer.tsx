@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <section className="bg-pubg-dark py-8 px-6 border-t border-pubg-dark shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+    <section className="bg-pubg-dark/95 py-8 px-6 border-t border-pubg-yellow/10 shadow-[0_-18px_55px_rgba(0,0,0,0.22)]">
       <div className="text-center flex flex-col gap-2">
-        <p className="text-base md:text-lg opacity-90 tracking-wider text-pubg-text uppercase font-semibold">
+        <p className="display-title text-xl md:text-2xl opacity-90 tracking-wider text-pubg-text uppercase font-semibold">
           Designed & Developed By AZM{" "}
           <span className="text-pubg-yellow inline-block hover:-translate-y-1 transform duration-200 cursor-default">
             nostaLgic

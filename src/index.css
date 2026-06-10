@@ -1,18 +1,325 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Teko", sans-serif;
+  --font-sans: "Rajdhani", sans-serif;
+  --font-display: "Teko", sans-serif;
 
-  --color-pubg-yellow: #e5a823; /* The classic Battlegrounds accent color */
-  --color-pubg-dark: #0a0a0a;
-  --color-pubg-panel: #1a1a1a;
-  --color-pubg-text: #e5e5e5;
-  --color-pubg-title: #aaa;
+  --color-pubg-yellow: #f3b73b;
+  --color-pubg-dark: #080806;
+  --color-pubg-panel: #161511;
+  --color-pubg-text: #f1ede2;
+  --color-pubg-title: #bfb7a6;
+  --color-pubg-olive: #9ca66c;
+  --color-pubg-brass: #7d5f22;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-pubg-panel);
+  min-height: 100vh;
+  background-color: var(--color-pubg-dark);
+  background-image:
+    linear-gradient(rgba(243, 183, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 183, 59, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, #080806 0%, #15120c 42%, #080806 100%);
+  background-position:
+    center top,
+    center top,
+    center;
+  background-size:
+    64px 64px,
+    64px 64px,
+    auto;
   color: var(--color-pubg-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(90deg, rgba(243, 183, 59, 0.08), transparent 24%, transparent 76%, rgba(156, 166, 108, 0.08));
+  mix-blend-mode: screen;
+  opacity: 0.45;
+}
+
+::selection {
+  background: var(--color-pubg-yellow);
+  color: var(--color-pubg-dark);
+}
+
+@layer components {
+  .section-frame {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .section-frame::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+    background:
+      linear-gradient(115deg, rgba(243, 183, 59, 0.1), transparent 28%),
+      linear-gradient(245deg, rgba(156, 166, 108, 0.08), transparent 30%);
+    opacity: 0.72;
+  }
+
+  .section-divider {
+    position: relative;
+  }
+
+  .section-divider::after {
+    position: absolute;
+    right: 6%;
+    bottom: 0;
+    left: 6%;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(243, 183, 59, 0.55), transparent);
+  }
+
+  .display-title {
+    font-family: var(--font-display);
+    text-shadow: 0 0 28px rgba(243, 183, 59, 0.18);
+  }
+
+  .eyebrow-line {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-pubg-olive);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  .eyebrow-line::before,
+  .eyebrow-line::after {
+    width: 2.5rem;
+    height: 1px;
+    content: "";
+    background: rgba(243, 183, 59, 0.5);
+  }
+
+  .tactical-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(243, 183, 59, 0.16);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.055), transparent 42%),
+      rgba(22, 21, 17, 0.88);
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+  }
+
+  .tactical-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36%;
+    height: 2px;
+    content: "";
+    background: linear-gradient(90deg, var(--color-pubg-yellow), transparent);
+    transition: width 300ms ease;
+  }
+
+  .tactical-card::after {
+    position: absolute;
+    top: -35%;
+    bottom: -35%;
+    left: -85%;
+    width: 170%;
+    pointer-events: none;
+    content: "";
+    border-radius: inherit;
+    background:
+      linear-gradient(
+        112deg,
+        transparent 0%,
+        transparent 38%,
+        rgba(255, 255, 255, 0.075) 48%,
+        rgba(243, 183, 59, 0.045) 52%,
+        transparent 64%,
+        transparent 100%
+      );
+    filter: blur(0.5px);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transform: translateX(-28%) skewX(-14deg);
+    transition:
+      opacity 260ms ease,
+      transform 680ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .tactical-card:hover {
+    border-color: rgba(243, 183, 59, 0.42);
+    box-shadow:
+      0 30px 95px rgba(0, 0, 0, 0.42),
+      0 0 0 1px rgba(243, 183, 59, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .tactical-card:hover::before {
+    width: 72%;
+  }
+
+  .tactical-card:hover::after {
+    opacity: 0.95;
+    transform: translateX(78%) skewX(-14deg);
+  }
+
+  .reveal-up {
+    animation: reveal-up 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .reveal-delay-1 {
+    animation-delay: 120ms;
+  }
+
+  .reveal-delay-2 {
+    animation-delay: 240ms;
+  }
+
+  .reveal-delay-3 {
+    animation-delay: 360ms;
+  }
+
+  .hero-portrait {
+    position: relative;
+  }
+
+  .hero-portrait::before,
+  .hero-portrait::after {
+    position: absolute;
+    inset: 10%;
+    z-index: -1;
+    content: "";
+    border: 1px solid rgba(243, 183, 59, 0.22);
+    transform: rotate(-8deg);
+    animation: slow-drift 8s ease-in-out infinite;
+  }
+
+  .hero-portrait::after {
+    inset: 18%;
+    border-color: rgba(156, 166, 108, 0.24);
+    transform: rotate(8deg);
+    animation-delay: -3s;
+  }
+
+  .hero-image {
+    filter:
+      drop-shadow(0 28px 30px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 0 26px rgba(243, 183, 59, 0.16));
+    animation: float-command 5.5s ease-in-out infinite;
+  }
+
+  .magnetic-link {
+    transition:
+      color 220ms ease,
+      transform 220ms ease,
+      text-shadow 220ms ease;
+  }
+
+  .magnetic-link:hover {
+    transform: translateY(-0.2rem);
+    text-shadow: 0 0 18px rgba(243, 183, 59, 0.36);
+  }
+
+  .field-input {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent),
+      rgba(8, 8, 6, 0.82);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .field-input:focus {
+    box-shadow:
+      0 0 0 3px rgba(243, 183, 59, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .command-button {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 18px 42px rgba(243, 183, 59, 0.16);
+  }
+
+  .command-button::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+    transform: translateX(-120%);
+    transition: transform 520ms ease;
+  }
+
+  .command-button:hover::before {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-command {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes slow-drift {
+  0%,
+  100% {
+    transform: rotate(-8deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(5deg) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
 }

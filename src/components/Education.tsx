@@ -1,31 +1,18 @@
+import RemoteDataStatus from "./RemoteDataStatus";
+import SectionHeading from "./SectionHeading";
 import useRemoteData from "../hooks/useRemoteData";
-
-const EDUCATION_ENDPOINT = "/data/education.json";
-
-type EducationRecord = {
-  id: number;
-  degree: string;
-  institution: string;
-  date: string;
-};
-
-type Certification = {
-  id: number;
-  title: string;
-  issuer: string;
-  link: string;
-  date: string;
-};
-
-type EducationContent = {
-  education: EducationRecord[];
-  certifications: Certification[];
-};
+import type {
+  Certification,
+  EducationContent,
+  EducationRecord,
+} from "../types/portfolio";
 
 const EMPTY_EDUCATION_CONTENT: EducationContent = {
   education: [],
   certifications: [],
 };
+
+const EDUCATION_ENDPOINT = "/data/education.json";
 
 type EducationCardProps = {
   education: EducationRecord[];
@@ -33,8 +20,8 @@ type EducationCardProps = {
 
 const EducationCard = ({ education }: EducationCardProps) => {
   return (
-    <div className="bg-pubg-panel p-8 md:p-10 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
-      <h3 className="text-3xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
+    <div className="tactical-card p-8 md:p-10 rounded-sm hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
+      <h3 className="display-title text-4xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
         Education
       </h3>
 
@@ -42,7 +29,7 @@ const EducationCard = ({ education }: EducationCardProps) => {
         {education.map((edu) => (
           <div key={edu.id} className="flex flex-col gap-2">
             <div className="flex justify-between items-start gap-4">
-              <h4 className="text-2xl font-bold text-pubg-text tracking-wide">
+              <h4 className="display-title text-3xl font-bold text-pubg-text tracking-wide">
                 {edu.degree}
               </h4>
               <span className="bg-pubg-yellow/10 text-pubg-yellow px-3 py-1 rounded-sm text-sm border border-pubg-yellow/20 font-semibold whitespace-nowrap mt-1">
@@ -77,8 +64,8 @@ const CertificationsCard = ({ certifications }: CertificationsCardProps) => {
   );
 
   return (
-    <div className="bg-pubg-panel p-8 md:p-10 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
-      <h3 className="text-3xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
+    <div className="tactical-card p-8 md:p-10 rounded-sm hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
+      <h3 className="display-title text-4xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
         Certifications
       </h3>
 
@@ -89,7 +76,7 @@ const CertificationsCard = ({ certifications }: CertificationsCardProps) => {
             className="flex flex-col gap-2 pb-6 border-b border-gray-700 last:border-0 last:pb-0"
           >
             <div className="flex justify-between items-start gap-4">
-              <h4 className="text-xl font-bold text-pubg-text tracking-wide leading-tight">
+              <h4 className="display-title text-2xl font-bold text-pubg-text tracking-wide leading-tight">
                 {cert.title}
               </h4>
               <span className="bg-pubg-dark text-pubg-text px-3 py-1 rounded-sm text-sm border border-gray-700 font-semibold whitespace-nowrap mt-1">
@@ -124,37 +111,24 @@ const Education = () => {
     educationContent.certifications.length > 0;
 
   return (
-    <section className="bg-pubg-dark py-20 px-6">
+    <section className="section-frame section-divider bg-pubg-dark/95 py-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
-        <div className="text-center">
-          <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
-            Academy Record
-          </h2>
-          <p className="text-xl text-pubg-text opacity-90 mt-4">
-            Formal education and foundational technical certifications.
-          </p>
-        </div>
+        <SectionHeading
+          title="Academy Record"
+          eyebrow="Credentials"
+          description="Formal education and foundational technical certifications."
+        />
 
-        {isLoading && (
-          <p className="text-center text-pubg-text opacity-80">
-            Loading education records...
-          </p>
-        )}
-
-        {errorMessage && (
-          <p className="text-center text-pubg-text opacity-80">
-            {errorMessage}
-          </p>
-        )}
-
-        {!isLoading && !errorMessage && !hasEducationRecords && (
-          <p className="text-center text-pubg-text opacity-80">
-            No education records found.
-          </p>
-        )}
+        <RemoteDataStatus
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+          isEmpty={!hasEducationRecords}
+          loadingMessage="Loading education records..."
+          emptyMessage="No education records found."
+        />
 
         {!isLoading && !errorMessage && hasEducationRecords && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full reveal-up reveal-delay-1">
             <EducationCard education={educationContent.education} />
             <CertificationsCard
               certifications={educationContent.certifications}

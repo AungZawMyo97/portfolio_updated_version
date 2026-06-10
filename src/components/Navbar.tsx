@@ -27,6 +27,19 @@ const NAV_ITEMS = [
   },
 ];
 
+const SOCIAL_LINKS = [
+  {
+    href: "https://github.com/AungZawMyo97",
+    label: "GitHub",
+    icon: faGithub,
+  },
+  {
+    href: "https://www.linkedin.com/in/aungzawmyo-dev/",
+    label: "LinkedIn",
+    icon: faLinkedinIn,
+  },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,14 +48,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -50,12 +60,12 @@ const Navbar = () => {
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? "bg-pubg-panel/80 backdrop-blur-md shadow-lg border-pubg-dark"
-          : "bg-pubg-panel border-pubg-panel shadow-none"
+          ? "bg-pubg-panel/80 backdrop-blur-xl shadow-[0_18px_55px_rgba(0,0,0,0.34)] border-pubg-yellow/20"
+          : "bg-pubg-panel/70 backdrop-blur-md border-pubg-yellow/10 shadow-none"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-        <div className="text-2xl font-bold tracking-wider">
+        <div className="display-title text-2xl font-bold tracking-wider">
           <a href="/" onClick={closeMenu}>
             AZM{" "}
             <span className="text-pubg-yellow inline-block hover:-translate-y-1 transform duration-200">
@@ -71,7 +81,7 @@ const Navbar = () => {
                 to={item.target}
                 smooth={true}
                 duration={500}
-                className="hover:text-pubg-yellow transition-colors hover:cursor-pointer"
+                className="magnetic-link hover:text-pubg-yellow hover:cursor-pointer"
               >
                 {item.label}
               </Link>
@@ -79,34 +89,22 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex gap-6 text-2xl">
-          <a
-            href="https://github.com/AungZawMyo97"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pubg-yellow transition-colors hover:-translate-y-1 transform duration-200"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/aungzawmyo-dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pubg-yellow transition-colors hover:-translate-y-1 transform duration-200"
-          >
-            <FontAwesomeIcon icon={faLinkedinIn} />
-          </a>
-        </div>
+        <SocialLinks />
 
         <button
+          type="button"
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          aria-expanded={isMenuOpen}
           className="md:hidden text-2xl text-pubg-text hover:text-pubg-yellow transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
         >
           <FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
         </button>
 
         <div
-          className={`md:hidden absolute top-full left-0 w-full bg-pubg-panel border-b border-pubg-dark shadow-xl flex flex-col items-start px-6 gap-6 text-md overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`md:hidden absolute top-full left-0 w-full bg-pubg-panel/95 backdrop-blur-xl border-b border-pubg-yellow/15 shadow-xl flex flex-col items-start px-6 gap-6 text-md overflow-hidden transition-all duration-500 ease-in-out ${
             isMenuOpen
               ? "max-h-100 py-6 opacity-100 border-b "
               : "max-h-0 py-0 opacity-0 border-b-0"
@@ -119,33 +117,48 @@ const Navbar = () => {
               smooth={true}
               duration={500}
               onClick={closeMenu}
-              className="hover:text-pubg-yellow transition-colors"
+              className="magnetic-link hover:text-pubg-yellow"
             >
               {item.label}
             </Link>
           ))}
 
-          <div className="flex gap-8 mt-4">
-            <a
-              href="https://github.com/AungZawMyo97"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pubg-yellow transition-colors"
-            >
-              <FontAwesomeIcon icon={faGithub} className="text-2xl" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/aungzawmyo-dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-pubg-yellow transition-colors"
-            >
-              <FontAwesomeIcon icon={faLinkedinIn} className="text-2xl" />
-            </a>
-          </div>
+          <SocialLinks isMobile />
         </div>
       </div>
     </nav>
+  );
+};
+
+type SocialLinksProps = {
+  isMobile?: boolean;
+};
+
+const SocialLinks = ({ isMobile = false }: SocialLinksProps) => {
+  return (
+    <div
+      className={isMobile ? "flex gap-8 mt-4" : "hidden md:flex gap-6 text-2xl"}
+    >
+      {SOCIAL_LINKS.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+          className={
+            isMobile
+              ? "magnetic-link hover:text-pubg-yellow"
+              : "magnetic-link hover:text-pubg-yellow"
+          }
+        >
+          <FontAwesomeIcon
+            icon={link.icon}
+            className={isMobile ? "text-2xl" : undefined}
+          />
+        </a>
+      ))}
+    </div>
   );
 };
 

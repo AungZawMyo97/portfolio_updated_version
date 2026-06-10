@@ -1,17 +1,91 @@
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
+type SkillScore = {
+  label: string;
+  score: number;
+};
+
+type SkillGroup = {
+  title: string;
+  textClassName: string;
+  skills: SkillScore[];
+};
+
+const SKILL_GROUPS: SkillGroup[] = [
+  {
+    title: "Enterprise Loadout",
+    textClassName: "text-pubg-yellow",
+    skills: [
+      { label: "C#", score: 90 },
+      { label: ".NET/.NET Core", score: 95 },
+      { label: "Umbraco", score: 80 },
+      { label: "SQL", score: 85 },
+    ],
+  },
+  {
+    title: "Field Experience",
+    textClassName: "text-emerald-400",
+    skills: [
+      { label: "React", score: 75 },
+      { label: "Node", score: 80 },
+      { label: "Express", score: 80 },
+      { label: "Next.js", score: 60 },
+    ],
+  },
+];
+
+const SUPPORT_SKILLS = [
+  "Effective Communication",
+  "Team Collaboration",
+  "Problem Solving",
+  "Time Management",
+];
+
+type SkillGroupCardProps = {
+  group: SkillGroup;
+  shouldAnimate: boolean;
+};
+
+const SkillGroupCard = ({ group, shouldAnimate }: SkillGroupCardProps) => {
+  return (
+    <div className="tactical-card p-8 rounded-sm text-left hover:-translate-y-2 transition-transform duration-300">
+      <h3 className="display-title text-3xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
+        {group.title}
+      </h3>
+      <ul className="flex flex-col gap-4 text-lg">
+        {group.skills.map((skill) => (
+          <li
+            key={skill.label}
+            className={`flex justify-between items-center ${group.textClassName}`}
+          >
+            <span>{skill.label}</span>
+            <span>
+              {shouldAnimate ? <CountUp end={skill.score} duration={2} /> : 0}%
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const Skills = () => {
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2,
   });
 
   return (
-    <section ref={ref} className="bg-pubg-dark py-20 px-6" id="loadout">
+    <section
+      ref={ref}
+      className="section-frame section-divider bg-pubg-dark/95 py-20 px-6"
+      id="loadout"
+    >
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
-        <div className="max-w-3xl flex flex-col items-center gap-6">
-          <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
+        <div className="max-w-3xl flex flex-col items-center gap-6 reveal-up">
+          <span className="eyebrow-line">Capability Matrix</span>
+          <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
             Technical Arsenal
           </h2>
           <p className="text-xl text-pubg-text opacity-90 leading-relaxed normal-case">
@@ -21,72 +95,25 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-10">
-          <div className="bg-pubg-panel p-8 rounded-sm border border-pubg-dark shadow-xl text-left hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
-              Enterprise Loadout
-            </h3>
-            <ul className="flex flex-col gap-4 text-lg">
-              <li className="flex justify-between items-center text-pubg-yellow">
-                <span>C#</span>
-                <span>{inView && <CountUp end={90} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-pubg-yellow">
-                <span>.NET/.NET Core</span>
-                <span>{inView && <CountUp end={95} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-pubg-yellow">
-                <span>Umbraco</span>
-                <span>{inView && <CountUp end={80} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-pubg-yellow">
-                <span>SQL</span>
-                <span>{inView && <CountUp end={85} duration={2} />}%</span>
-              </li>
-            </ul>
-          </div>
-          <div className="bg-pubg-panel p-8 rounded-sm border border-pubg-dark shadow-xl text-left hover:-translate-y-2 transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
-              Field Experience
-            </h3>
-            <ul className="flex flex-col gap-4 text-lg">
-              <li className="flex justify-between items-center text-emerald-400">
-                <span>React</span>
-                <span>{inView && <CountUp end={75} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-emerald-400">
-                <span>Node</span>
-                <span>{inView && <CountUp end={80} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-emerald-400">
-                <span>Express</span>
-                <span>{inView && <CountUp end={80} duration={2} />}%</span>
-              </li>
-              <li className="flex justify-between items-center text-emerald-400">
-                <span>Next.js</span>
-                <span>{inView && <CountUp end={60} duration={2} />}%</span>
-              </li>
-            </ul>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-10 reveal-up reveal-delay-1">
+          {SKILL_GROUPS.map((group) => (
+            <SkillGroupCard
+              key={group.title}
+              group={group}
+              shouldAnimate={inView}
+            />
+          ))}
 
-          <div className="bg-pubg-panel p-8 rounded-sm border border-pubg-dark shadow-xl text-left hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-1">
-            <h3 className="text-2xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
+          <div className="tactical-card p-8 rounded-sm text-left hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-1">
+            <h3 className="display-title text-3xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
               Tactical Support
             </h3>
             <ul className="flex flex-col gap-4 text-lg text-pubg-text opacity-90">
-              <li className="flex items-center gap-2">
-                <span className="text-pubg-yellow">▸</span> Effective
-                Communication
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-pubg-yellow">▸</span> Team Collaboration
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-pubg-yellow">▸</span> Problem Solving
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-pubg-yellow">▸</span> Time Management
-              </li>
+              {SUPPORT_SKILLS.map((skill) => (
+                <li key={skill} className="flex items-center gap-2">
+                  <span className="text-pubg-yellow">▸</span> {skill}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

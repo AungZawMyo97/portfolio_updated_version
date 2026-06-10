@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 type RemoteDataState<T> = {
@@ -12,35 +11,41 @@ const useRemoteData = <T,>(
   initialData: T,
   errorMessage: string,
 ): RemoteDataState<T> => {
-  const [data, setData] = useState<T>(initialData);
+  const [data, setData] = useState<T>(() => initialData);
   const [isLoading, setIsLoading] = useState(true);
   const [resolvedErrorMessage, setResolvedErrorMessage] = useState("");
 
   useEffect(() => {
-    let isMounted = true;
+    const controller = new AbortController();
 
     const loadData = async () => {
       try {
-        const response = await axios.get<T>(endpoint);
+        const response = await fetch(endpoint, {
+          signal: controller.signal,
+        });
 
-        if (isMounted) {
-          setData(response.data);
+        if (!response.ok) {
+          throw new Error(`Request failed with ${response.status}`);
         }
-      } catch {
-        if (isMounted) {
-          setResolvedErrorMessage(errorMessage);
+
+        const remoteData = (await response.json()) as T;
+
+        setData(remoteData);
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
         }
+
+        setResolvedErrorMessage(errorMessage);
       } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       }
     };
 
     loadData();
 
     return () => {
-      isMounted = false;
+      controller.abort();
     };
   }, [endpoint, errorMessage]);
 

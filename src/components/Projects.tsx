@@ -1,26 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useEffect, useState } from "react";
+
+import RemoteDataStatus from "./RemoteDataStatus";
+import SectionHeading from "./SectionHeading";
+import useRemoteData from "../hooks/useRemoteData";
+import type { Project } from "../types/portfolio";
 
 const PROJECTS_ENDPOINT = "/data/projects.json";
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  techStack: string[];
-  githubLink: string;
-  liveLink: string;
-  image: string;
-};
-
-const fetchProjects = async () => {
-  const response = await axios.get<Project[]>(PROJECTS_ENDPOINT);
-
-  return response.data;
-};
 
 const hasProjectLink = (link: string) => link.trim() !== "" && link !== "#";
 
@@ -30,18 +17,18 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <div className="bg-pubg-panel rounded-sm border border-pubg-dark shadow-xl flex flex-col hover:-translate-y-2 transition-transform duration-300 overflow-hidden group">
+    <div className="tactical-card rounded-sm flex flex-col hover:-translate-y-2 transition-transform duration-300 group">
       <div className="h-48 bg-gray-800 border-b border-pubg-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-pubg-yellow/10 group-hover:bg-transparent transition-colors duration-300"></div>
+        <div className="absolute inset-0 bg-pubg-yellow/12 mix-blend-screen group-hover:bg-transparent transition-colors duration-300"></div>
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
         />
       </div>
 
       <div className="p-6 md:p-8 flex flex-col grow">
-        <h3 className="text-2xl font-bold text-pubg-text tracking-wide mb-3">
+        <h3 className="display-title text-3xl font-bold text-pubg-text tracking-wide mb-3">
           {project.title}
         </h3>
         <p className="text-pubg-text opacity-80 leading-relaxed mb-6 grow">
@@ -52,7 +39,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.techStack.map((tech) => (
             <li
               key={tech}
-              className="text-xs font-bold text-pubg-dark bg-pubg-yellow px-2 py-1 rounded-sm uppercase"
+              className="text-xs font-bold text-pubg-dark bg-pubg-yellow px-2 py-1 rounded-sm uppercase shadow-[0_0_16px_rgba(243,183,59,0.12)]"
             >
               {tech}
             </li>
@@ -65,7 +52,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-pubg-text hover:text-pubg-yellow transition-colors font-semibold"
+              className="magnetic-link flex items-center gap-2 text-pubg-text hover:text-pubg-yellow font-semibold"
             >
               <FontAwesomeIcon icon={faGithub} className="text-xl" /> Code
             </a>
@@ -75,7 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-pubg-text hover:text-pubg-yellow transition-colors font-semibold"
+              className="magnetic-link flex items-center gap-2 text-pubg-text hover:text-pubg-yellow font-semibold"
             >
               <FontAwesomeIcon icon={faExternalLinkAlt} /> Live Demo
             </a>
@@ -87,71 +74,35 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 };
 
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadProjects = async () => {
-      try {
-        const loadedProjects = await fetchProjects();
-
-        if (isMounted) {
-          setProjects(loadedProjects);
-        }
-      } catch {
-        if (isMounted) {
-          setErrorMessage("Projects are unavailable right now.");
-        }
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    loadProjects();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const {
+    data: projects,
+    isLoading,
+    errorMessage,
+  } = useRemoteData<Project[]>(
+    PROJECTS_ENDPOINT,
+    [],
+    "Projects are unavailable right now.",
+  );
 
   return (
-    <section id="deployments" className="bg-pubg-panel py-20 px-6">
+    <section id="deployments" className="section-frame section-divider bg-pubg-panel/80 py-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
-        <div className="text-center">
-          <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
-            Deployments
-          </h2>
-          <p className="text-xl text-pubg-text opacity-90 mt-4 max-w-2xl mx-auto">
-            A selection of my featured personal builds, architectures, and
-            open-source contributions.
-          </p>
-        </div>
+        <SectionHeading
+          title="Deployments"
+          eyebrow="Selected Builds"
+          description="A selection of my featured personal builds, architectures, and open-source contributions."
+        />
 
-        {isLoading && (
-          <p className="text-center text-pubg-text opacity-80">
-            Loading projects...
-          </p>
-        )}
-
-        {errorMessage && (
-          <p className="text-center text-pubg-text opacity-80">
-            {errorMessage}
-          </p>
-        )}
-
-        {!isLoading && !errorMessage && projects.length === 0 && (
-          <p className="text-center text-pubg-text opacity-80">
-            No projects found.
-          </p>
-        )}
+        <RemoteDataStatus
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+          isEmpty={projects.length === 0}
+          loadingMessage="Loading projects..."
+          emptyMessage="No projects found."
+        />
 
         {!isLoading && !errorMessage && projects.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-4 reveal-up reveal-delay-1">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

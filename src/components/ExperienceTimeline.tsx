@@ -1,17 +1,9 @@
+import RemoteDataStatus from "./RemoteDataStatus";
+import SectionHeading from "./SectionHeading";
 import useRemoteData from "../hooks/useRemoteData";
+import type { Experience } from "../types/portfolio";
 
 const EXPERIENCES_ENDPOINT = "/data/experiences.json";
-
-type Experience = {
-  id: number;
-  role: string;
-  company: string;
-  website: string;
-  date: string;
-  description: string;
-  keyResponsibilities: string[];
-  techStack: string[];
-};
 
 type ExperienceCardProps = {
   experience: Experience;
@@ -19,20 +11,20 @@ type ExperienceCardProps = {
 
 const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   return (
-    <div className="mb-12 relative pl-8 md:pl-12 last:mb-0">
-      <div className="absolute w-4 h-4 bg-pubg-yellow rounded-full -left-2.25 top-10 shadow-[0_0_10px_rgba(229,168,35,0.8)]"></div>
+    <div className="mb-12 relative pl-8 md:pl-12 last:mb-0 reveal-up">
+      <div className="absolute w-4 h-4 bg-pubg-yellow rounded-full -left-2.25 top-10 shadow-[0_0_18px_rgba(243,183,59,0.8)]"></div>
 
-      <div className="bg-pubg-panel p-6 md:p-8 rounded-sm border border-pubg-dark shadow-xl hover:-translate-y-1 transition-transform duration-300">
+      <div className="tactical-card p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
           <div>
-            <h3 className="text-2xl font-bold text-pubg-text tracking-wide mb-1">
+            <h3 className="display-title text-3xl font-bold text-pubg-text tracking-wide mb-1">
               {experience.role}
             </h3>
             <a
               href={experience.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg text-pubg-yellow font-semibold hover:underline"
+              className="magnetic-link text-lg text-pubg-yellow font-semibold hover:underline"
             >
               {experience.company}
             </a>
@@ -89,34 +81,25 @@ const ExperienceTimeline = () => {
   );
 
   return (
-    <section className="bg-pubg-dark py-20 px-6" id="service-record">
+    <section
+      className="section-frame section-divider bg-pubg-dark/95 py-20 px-6"
+      id="service-record"
+    >
       <div className="max-w-4xl mx-auto flex flex-col gap-12">
-        <div className="text-center mb-8">
-          <h2 className="text-5xl lg:text-6xl font-bold tracking-wider text-pubg-yellow uppercase">
-            Service Record
-          </h2>
-          <p className="text-xl text-pubg-text opacity-90 mt-4">
-            A timeline of my professional deployments and enterprise experience.
-          </p>
-        </div>
+        <SectionHeading
+          title="Service Record"
+          eyebrow="Career Timeline"
+          description="A timeline of my professional deployments and enterprise experience."
+          className="mb-8"
+        />
 
-        {isLoading && (
-          <p className="text-center text-pubg-text opacity-80">
-            Loading experience records...
-          </p>
-        )}
-
-        {errorMessage && (
-          <p className="text-center text-pubg-text opacity-80">
-            {errorMessage}
-          </p>
-        )}
-
-        {!isLoading && !errorMessage && experiences.length === 0 && (
-          <p className="text-center text-pubg-text opacity-80">
-            No experience records found.
-          </p>
-        )}
+        <RemoteDataStatus
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+          isEmpty={experiences.length === 0}
+          loadingMessage="Loading experience records..."
+          emptyMessage="No experience records found."
+        />
 
         {!isLoading && !errorMessage && experiences.length > 0 && (
           <div className="relative border-l-2 border-pubg-yellow/30 ml-3 md:ml-0">
