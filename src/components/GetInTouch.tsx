@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ScrollReveal from "./ScrollReveal";
 
 const GetInTouch = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -41,9 +42,12 @@ const GetInTouch = () => {
   };
 
   return (
-    <section className="section-frame section-divider bg-pubg-panel/80 py-20 px-6" id="comms">
+    <section
+      className="section-frame section-divider bg-pubg-panel/80 py-20 px-6"
+      id="comms"
+    >
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
-        <div className="text-center flex flex-col gap-4 reveal-up">
+        <ScrollReveal className="text-center flex flex-col gap-4" variant="pop">
           <span className="eyebrow-line justify-center">Open Channel</span>
           <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
             Get In Touch
@@ -55,9 +59,12 @@ const GetInTouch = () => {
             Let's sync up and engineer a solution. My comms are open for new
             opportunities and collaborations.
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 w-full reveal-up reveal-delay-1">
+        <ScrollReveal
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 w-full"
+          delay={120}
+        >
           <div className="tactical-card p-8 md:p-12 rounded-sm hover:-translate-y-2 transition-transform duration-300 flex flex-col gap-8">
             <div>
               <h3 className="display-title text-4xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-4">
@@ -185,7 +192,7 @@ const GetInTouch = () => {
               </button>
             </form>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

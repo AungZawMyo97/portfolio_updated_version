@@ -1,6 +1,7 @@
 import Marquee from "react-fast-marquee";
 
 import RemoteDataStatus from "./RemoteDataStatus";
+import ScrollReveal from "./ScrollReveal";
 import useRemoteData from "../hooks/useRemoteData";
 import type { Tool } from "../types/portfolio";
 
@@ -42,7 +43,7 @@ const Tools = () => {
 
   return (
     <section className="section-frame section-divider bg-pubg-panel/80 py-14 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col items-center gap-6 reveal-up">
+      <ScrollReveal className="max-w-5xl mx-auto flex flex-col items-center gap-6" variant="pop">
         <h2 className="display-title text-5xl lg:text-6xl text-center font-bold tracking-wider text-pubg-text uppercase">
           Tools I'm familiar with
         </h2>
@@ -68,7 +69,7 @@ const Tools = () => {
             ))}
           </Marquee>
         )}
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

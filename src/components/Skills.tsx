@@ -1,5 +1,6 @@
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import ScrollReveal from "./ScrollReveal";
 
 type SkillScore = {
   label: string;
@@ -83,7 +84,7 @@ const Skills = () => {
       id="loadout"
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
-        <div className="max-w-3xl flex flex-col items-center gap-6 reveal-up">
+        <ScrollReveal className="max-w-3xl flex flex-col items-center gap-6" variant="pop">
           <span className="eyebrow-line">Capability Matrix</span>
           <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
             Technical Arsenal
@@ -93,9 +94,12 @@ const Skills = () => {
             interpersonal skills I've equipped through years of deploying
             scalable, full-stack applications in enterprise environments.
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-10 reveal-up reveal-delay-1">
+        <ScrollReveal
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-10"
+          delay={120}
+        >
           {SKILL_GROUPS.map((group) => (
             <SkillGroupCard
               key={group.title}
@@ -116,7 +120,7 @@ const Skills = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

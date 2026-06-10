@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HeroImage from "../assets/hero.png";
+import ScrollReveal from "./ScrollReveal";
 
 const SOCIAL_LINKS = [
   {
@@ -31,7 +32,10 @@ const Hero = () => {
       className="section-frame section-divider px-6 py-14 lg:py-30"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-        <div className="order-2 lg:order-1 flex flex-col gap-6 text-center lg:text-left reveal-up">
+        <ScrollReveal
+          className="order-2 lg:order-1 flex flex-col gap-6 text-center lg:text-left"
+          variant="left"
+        >
           <span className="eyebrow-line justify-center lg:justify-start">
             Backend / Full Stack
           </span>
@@ -55,15 +59,25 @@ const Hero = () => {
             leveraging AI-assisted tools to accelerate delivery and improve code
             quality.
           </p>
-        </div>
-        <div className="hero-portrait order-1 lg:order-2 flex justify-center relative z-10 lg:scale-[1.15] transform transition-transform duration-500 hover:scale-125 reveal-up reveal-delay-1">
-          <img
-            src={HeroImage}
-            alt="Hero Image"
-            className="hero-image w-64 lg:w-full max-w-sm object-contain"
-          />
-        </div>
-        <div className="order-3 lg:order-3 flex flex-col gap-6 text-center lg:text-right lg:items-end reveal-up reveal-delay-2">
+        </ScrollReveal>
+        <ScrollReveal
+          className="order-1 lg:order-2"
+          delay={120}
+          variant="pop"
+        >
+          <div className="hero-portrait flex justify-center relative z-10 lg:scale-[1.15] transform transition-transform duration-500 hover:scale-125">
+            <img
+              src={HeroImage}
+              alt="Hero Image"
+              className="hero-image w-64 lg:w-full max-w-sm object-contain"
+            />
+          </div>
+        </ScrollReveal>
+        <ScrollReveal
+          className="order-3 lg:order-3 flex flex-col gap-6 text-center lg:text-right lg:items-end"
+          delay={240}
+          variant="right"
+        >
           <p className="display-title text-4xl font-bold text-pubg-yellow">
             Let's connect!
           </p>
@@ -88,7 +102,7 @@ const Hero = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

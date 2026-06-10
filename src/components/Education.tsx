@@ -1,5 +1,6 @@
 import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
+import ScrollReveal from "./ScrollReveal";
 import useRemoteData from "../hooks/useRemoteData";
 import type {
   Certification,
@@ -128,12 +129,15 @@ const Education = () => {
         />
 
         {!isLoading && !errorMessage && hasEducationRecords && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full reveal-up reveal-delay-1">
+          <ScrollReveal
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
+            delay={120}
+          >
             <EducationCard education={educationContent.education} />
             <CertificationsCard
               certifications={educationContent.certifications}
             />
-          </div>
+          </ScrollReveal>
         )}
       </div>
     </section>

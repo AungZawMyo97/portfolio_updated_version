@@ -1,5 +1,6 @@
 import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
+import ScrollReveal from "./ScrollReveal";
 import useRemoteData from "../hooks/useRemoteData";
 import type { Experience } from "../types/portfolio";
 
@@ -7,11 +8,16 @@ const EXPERIENCES_ENDPOINT = "/data/experiences.json";
 
 type ExperienceCardProps = {
   experience: Experience;
+  delay?: number;
 };
 
-const ExperienceCard = ({ experience }: ExperienceCardProps) => {
+const ExperienceCard = ({ experience, delay = 0 }: ExperienceCardProps) => {
   return (
-    <div className="mb-12 relative pl-8 md:pl-12 last:mb-0 reveal-up">
+    <ScrollReveal
+      className="mb-12 relative pl-8 md:pl-12 last:mb-0"
+      delay={delay}
+      variant="left"
+    >
       <div className="absolute w-4 h-4 bg-pubg-yellow rounded-full -left-2.25 top-10 shadow-[0_0_18px_rgba(243,183,59,0.8)]"></div>
 
       <div className="tactical-card p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300">
@@ -65,7 +71,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           </ul>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 };
 
@@ -103,8 +109,12 @@ const ExperienceTimeline = () => {
 
         {!isLoading && !errorMessage && experiences.length > 0 && (
           <div className="relative border-l-2 border-pubg-yellow/30 ml-3 md:ml-0">
-            {experiences.map((experience) => (
-              <ExperienceCard key={experience.id} experience={experience} />
+            {experiences.map((experience, index) => (
+              <ExperienceCard
+                key={experience.id}
+                experience={experience}
+                delay={Math.min(index * 110, 330)}
+              />
             ))}
           </div>
         )}

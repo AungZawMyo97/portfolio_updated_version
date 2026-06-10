@@ -4,6 +4,7 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
+import ScrollReveal from "./ScrollReveal";
 import useRemoteData from "../hooks/useRemoteData";
 import type { Project } from "../types/portfolio";
 
@@ -102,11 +103,14 @@ const Projects = () => {
         />
 
         {!isLoading && !errorMessage && projects.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-4 reveal-up reveal-delay-1">
+          <ScrollReveal
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-4"
+            delay={120}
+          >
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </div>
+          </ScrollReveal>
         )}
       </div>
     </section>

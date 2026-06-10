@@ -1,3 +1,5 @@
+import ScrollReveal from "./ScrollReveal";
+
 type SectionHeadingProps = {
   title: string;
   description?: string;
@@ -12,7 +14,7 @@ const SectionHeading = ({
   className = "",
 }: SectionHeadingProps) => {
   return (
-    <div className={`text-center reveal-up ${className}`}>
+    <ScrollReveal className={`text-center ${className}`} variant="pop">
       <span className="eyebrow-line mb-3">{eyebrow}</span>
       <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
         {title}
@@ -22,7 +24,7 @@ const SectionHeading = ({
           {description}
         </p>
       ) : null}
-    </div>
+    </ScrollReveal>
   );
 };
 
