@@ -73,16 +73,18 @@ const GetInTouch = () => {
               <p className="text-lg text-pubg-text opacity-90 mb-4">
                 Currently based in Thailand. Open for global remote positions.
               </p>
-              <ul className="flex flex-col gap-6 text-lg text-pubg-text">
+              <ul className="flex flex-col gap-6 text-base sm:text-lg text-pubg-text">
                 <li>
                   <a
                     href="mailto:aungzawmyo.azm1997@gmail.com"
-                    className="magnetic-link flex items-center gap-4 hover:text-pubg-yellow group"
+                    className="magnetic-link flex min-w-0 items-center gap-3 sm:gap-4 hover:text-pubg-yellow group"
                   >
-                    <span className="bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15 group-hover:scale-110 transition-transform">
+                    <span className="shrink-0 bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15 group-hover:scale-110 transition-transform">
                       <FontAwesomeIcon icon={faEnvelope} />
                     </span>
-                    aungzawmyo.azm1997@gmail.com
+                    <span className="min-w-0 break-all leading-snug">
+                      aungzawmyo.azm1997@gmail.com
+                    </span>
                   </a>
                 </li>
                 <li>
@@ -90,9 +92,9 @@ const GetInTouch = () => {
                     href="https://www.linkedin.com/in/aungzawmyo-dev/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="magnetic-link flex items-center gap-4 hover:text-pubg-yellow group"
+                    className="magnetic-link flex min-w-0 items-center gap-3 sm:gap-4 hover:text-pubg-yellow group"
                   >
-                    <span className="bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15 group-hover:scale-110 transition-transform">
+                    <span className="shrink-0 bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15 group-hover:scale-110 transition-transform">
                       <FontAwesomeIcon icon={faLinkedin} />
                     </span>
                     LinkedIn Profile
@@ -101,9 +103,9 @@ const GetInTouch = () => {
                 <li className="flex items-center gap-4">
                   <a
                     href="tel:+959966814521"
-                    className="magnetic-link flex items-center gap-4 hover:text-pubg-yellow group"
+                    className="magnetic-link flex min-w-0 items-center gap-3 sm:gap-4 hover:text-pubg-yellow group"
                   >
-                    <span className="bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15">
+                    <span className="shrink-0 bg-pubg-dark p-4 rounded-sm text-pubg-yellow border border-pubg-yellow/15">
                       <FontAwesomeIcon icon={faPhone} />
                     </span>
                     <span>+959 966-814-521</span>
