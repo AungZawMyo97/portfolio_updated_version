@@ -18,7 +18,7 @@ const ExperienceCard = ({ experience, delay = 0 }: ExperienceCardProps) => {
       delay={delay}
       variant="left"
     >
-      <div className="absolute w-4 h-4 bg-pubg-yellow rounded-full -left-2.25 top-10 shadow-[0_0_18px_rgba(243,183,59,0.8)]"></div>
+      <div className="absolute w-4 h-4 bg-pubg-yellow rounded-full -left-2.25 top-10"></div>
 
       <div className="tactical-card p-6 md:p-8 rounded-sm hover:-translate-y-1 transition-transform duration-300">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">

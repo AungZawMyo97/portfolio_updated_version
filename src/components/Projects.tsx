@@ -40,7 +40,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.techStack.map((tech) => (
             <li
               key={tech}
-              className="text-xs font-bold text-pubg-dark bg-pubg-yellow px-2 py-1 rounded-sm uppercase shadow-[0_0_16px_rgba(243,183,59,0.12)]"
+              className="text-xs font-bold text-pubg-dark bg-pubg-yellow px-2 py-1 rounded-sm uppercase"
             >
               {tech}
             </li>

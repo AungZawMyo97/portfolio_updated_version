@@ -19,7 +19,7 @@ const ToolItem = ({ tool }: ToolItemProps) => {
     >
       {tool.iconClass ? (
         <i
-          className={`${tool.iconClass} text-7xl drop-shadow-[0_0_18px_rgba(243,183,59,0.18)]`}
+          className={`${tool.iconClass} text-7xl`}
         ></i>
       ) : (
         <span className="flex h-24 min-w-32 items-center justify-center rounded-sm border border-pubg-yellow/30 bg-pubg-dark px-5 text-3xl font-bold tracking-wider text-pubg-yellow shadow-lg">

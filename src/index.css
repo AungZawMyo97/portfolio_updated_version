@@ -21,8 +21,8 @@ body {
   min-height: 100vh;
   background-color: var(--color-pubg-dark);
   background-image:
-    linear-gradient(rgba(243, 183, 59, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(243, 183, 59, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(243, 183, 59, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 183, 59, 0.020) 1px, transparent 1px),
     linear-gradient(135deg, #080806 0%, #15120c 42%, #080806 100%);
   background-position:
     center top,
@@ -47,14 +47,14 @@ body::before {
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.025) 0,
-      rgba(255, 255, 255, 0.025) 1px,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
       transparent 1px,
       transparent 5px
     ),
-    linear-gradient(90deg, rgba(243, 183, 59, 0.08), transparent 24%, transparent 76%, rgba(156, 166, 108, 0.08));
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.03));
   mix-blend-mode: screen;
-  opacity: 0.45;
+  opacity: 0.2;
 }
 
 ::selection {
@@ -92,12 +92,11 @@ body::before {
     left: 6%;
     height: 1px;
     content: "";
-    background: linear-gradient(90deg, transparent, rgba(243, 183, 59, 0.55), transparent);
+    background: linear-gradient(90deg, transparent, rgba(243, 183, 59, 0.30), transparent);
   }
 
   .display-title {
     font-family: var(--font-display);
-    text-shadow: 0 0 28px rgba(243, 183, 59, 0.18);
   }
 
   .eyebrow-line {
@@ -173,10 +172,9 @@ body::before {
   }
 
   .tactical-card:hover {
-    border-color: rgba(243, 183, 59, 0.42);
+    border-color: rgba(243, 183, 59, 0.25);
     box-shadow:
       0 30px 95px rgba(0, 0, 0, 0.42),
-      0 0 0 1px rgba(243, 183, 59, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
@@ -238,22 +236,19 @@ body::before {
     inset: 10%;
     z-index: -1;
     content: "";
-    border: 1px solid rgba(243, 183, 59, 0.22);
-    transform: rotate(-8deg);
-    animation: slow-drift 8s ease-in-out infinite;
+    border: 1px solid rgba(243, 183, 59, 0.12);
+    transform: rotate(-6deg);
   }
 
   .hero-portrait::after {
     inset: 18%;
-    border-color: rgba(156, 166, 108, 0.24);
-    transform: rotate(8deg);
-    animation-delay: -3s;
+    border-color: rgba(156, 166, 108, 0.10);
+    transform: rotate(6deg);
   }
 
   .hero-image {
     filter:
-      drop-shadow(0 28px 30px rgba(0, 0, 0, 0.42))
-      drop-shadow(0 0 26px rgba(243, 183, 59, 0.16));
+      drop-shadow(0 24px 28px rgba(0, 0, 0, 0.45));
     animation: float-command 5.5s ease-in-out infinite;
   }
 
@@ -266,7 +261,6 @@ body::before {
 
   .magnetic-link:hover {
     transform: translateY(-0.2rem);
-    text-shadow: 0 0 18px rgba(243, 183, 59, 0.36);
   }
 
   .field-input {
@@ -278,14 +272,14 @@ body::before {
 
   .field-input:focus {
     box-shadow:
-      0 0 0 3px rgba(243, 183, 59, 0.14),
+      0 0 0 2px rgba(243, 183, 59, 0.10),
       inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
   .command-button {
     position: relative;
     overflow: hidden;
-    box-shadow: 0 18px 42px rgba(243, 183, 59, 0.16);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
   .command-button::before {
@@ -310,17 +304,6 @@ body::before {
 
   50% {
     transform: translateY(-12px);
-  }
-}
-
-@keyframes slow-drift {
-  0%,
-  100% {
-    transform: rotate(-8deg) scale(1);
-  }
-
-  50% {
-    transform: rotate(5deg) scale(1.04);
   }
 }
 
