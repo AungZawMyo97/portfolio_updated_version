@@ -1,111 +1,95 @@
-import {
-  faFacebook,
-  faYoutube,
-  faDiscord,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HeroImage from "../assets/hero.png";
-import ScrollReveal from "./ScrollReveal";
+import ArrowIcon from "./ArrowIcon";
+import { profile } from "../data/profile";
 
-const SOCIAL_LINKS = [
-  {
-    href: "https://www.facebook.com/jeraxthefk/",
-    label: "Facebook",
-    icon: faFacebook,
-  },
-  {
-    href: "https://www.youtube.com/@nostaLgic_pubg",
-    label: "YouTube",
-    icon: faYoutube,
-  },
-  {
-    href: "https://discord.com/users/938751367978291240",
-    label: "Discord",
-    icon: faDiscord,
-  },
-];
-
-const Hero = () => {
+export default function Hero() {
   return (
-    <section
-      id="basecamp"
-      className="section-frame section-divider px-6 py-14 lg:py-30"
-    >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-        <ScrollReveal
-          className="order-2 lg:order-1 flex flex-col gap-6 text-center lg:text-left"
-          variant="left"
-        >
-          <span className="eyebrow-line justify-center lg:justify-start">
-            Backend / Full Stack
-          </span>
-          <h1 className="display-title text-4xl font-bold tracking-wide">
-            I'm <br />
-            <span className="text-6xl md:text-8xl text-pubg-yellow">
-              Aung Zaw Myo
-            </span>
+    <section id="about" className="hero container">
+      <div className="hero-intro">
+        <span className="eyebrow">
+          Software engineer / Backend & full stack
+        </span>
+        <span className="availability">
+          <span /> Open to opportunities
+        </span>
+      </div>
+      <div className="hero-grid">
+        <div>
+          <p className="hero-name">Hello, I’m Aung Zaw Myo.</p>
+          <h1>
+            Complex systems.
+            <br />
+            <span>Clear solutions.</span>
           </h1>
-          <p className="text-xl text-pubg-text opacity-90 leading-relaxed normal-case tracking-normal">
-            Software Engineer with 4+ years of experience designing and building
-            scalable enterprise backend systems and RESTful APIs using{" "}
-            <span className="text-pubg-yellow">C#, .NET / ASP.NET Core,</span>{" "}
-            and relational databases. Proven ability to translate complex
-            financial and data-intensive business logic into high-performance
-            full-stack solutions using{" "}
-            <span className="text-pubg-yellow">
-              React.js, Node.js and Next.js
-            </span>
-            . Experienced in cloud deployment and modern development workflows,
-            leveraging AI-assisted tools to accelerate delivery and improve code
-            quality.
+          <p className="hero-description">
+            I build reliable backend systems and thoughtful web applications.
+            Over 4 years working across financial services, enterprise
+            platforms, and the full development lifecycle.
           </p>
-        </ScrollReveal>
-        <ScrollReveal
-          className="order-1 lg:order-2"
-          delay={120}
-          variant="pop"
-        >
-          <div className="hero-portrait flex justify-center relative z-10 lg:scale-[1.15] transform transition-transform duration-500 hover:scale-125">
-            <img
-              src={HeroImage}
-              alt="Hero Image"
-              className="hero-image w-64 lg:w-full max-w-sm object-contain"
-            />
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projects">
+              Explore my work <ArrowIcon />
+            </a>
+            <a
+              className="text-link"
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <ArrowIcon diagonal />
+            </a>
           </div>
-        </ScrollReveal>
-        <ScrollReveal
-          className="order-3 lg:order-3 flex flex-col gap-6 text-center lg:text-right lg:items-end"
-          delay={240}
-          variant="right"
-        >
-          <p className="display-title text-4xl font-bold text-pubg-yellow">
-            Let's connect!
+        </div>
+        <aside className="profile-note" aria-label="Engineering focus">
+          <div className="note-heading">
+            <span className="eyebrow">My focus</span>
+            <span className="note-symbol" aria-hidden="true">
+              {"{ }"}
+            </span>
+          </div>
+          <h2>
+            Built with care.
+            <br />
+            Ready for the real world.
+          </h2>
+          <p>
+            From payment integrations to production deployments, I turn business
+            requirements into software people can depend on.
           </p>
-          <p className="text-xl text-pubg-text opacity-90 normal-case tracking-normal">
-            I'm open to new opportunities and collaborations. Let's build
-            quality software together and make an impact in the tech world. Feel
-            free to reach out to me on LinkedIn or check out my projects on
-            GitHub!
-          </p>
-          <ul className="flex gap-8 justify-center lg:justify-end text-4xl mt-4">
-            {SOCIAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  className="magnetic-link text-pubg-text hover:text-pubg-yellow inline-block"
-                >
-                  <FontAwesomeIcon icon={link.icon} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </ScrollReveal>
+          <dl>
+            <div>
+              <dt>Specialty</dt>
+              <dd>C# / .NET / REST APIs</dd>
+            </div>
+            <div>
+              <dt>Based in</dt>
+              <dd>Thailand · Open to remote</dd>
+            </div>
+          </dl>
+          <a
+            className="text-link"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect on LinkedIn <ArrowIcon diagonal />
+          </a>
+        </aside>
+      </div>
+      <div className="hero-summary">
+        <div>
+          <strong>
+            04<span>+</span>
+          </strong>
+          <span>Years of professional experience</span>
+        </div>
+        <div>
+          <strong>Backend first.</strong>
+          <span>Full stack when it matters.</span>
+        </div>
+        <a href="#experience">
+          A closer look at my experience <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

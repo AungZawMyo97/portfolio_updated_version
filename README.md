@@ -1,13 +1,14 @@
 # Aung Zaw Myo Portfolio
 
-A polished personal portfolio for Aung Zaw Myo, built with Vite, React, TypeScript, and Tailwind CSS. The site presents professional experience, selected projects, technical skills, tools, education, certifications, and contact options in a dark tactical visual style.
+A personal portfolio for Aung Zaw Myo, built with Vite, React, TypeScript, and Tailwind CSS. The site presents professional experience, selected projects, technical expertise, education, and contact options in a restrained editorial style.
 
 ## Highlights
 
 - Responsive single-page portfolio with smooth section navigation.
-- Refined command-deck styling with CSS-only animations, hover effects, textured backgrounds, and reduced-motion support.
+- Warm neutral colors, responsive layouts, keyboard navigation, and reduced-motion support.
+- Four featured projects with an expandable list of all projects.
 - Static JSON-backed content for projects, tools, experience, and education.
-- Contact form integration through EmailJS.
+- Contact form integration through EmailJS, loaded only when a message is submitted.
 - Lightweight client data loading using the browser `fetch` API.
 - Type-safe React components with shared portfolio domain types.
 
@@ -17,17 +18,14 @@ A polished personal portfolio for Aung Zaw Myo, built with Vite, React, TypeScri
 - TypeScript
 - Vite
 - Tailwind CSS v4
-- Font Awesome React icons
 - EmailJS
-- React CountUp
-- React Fast Marquee
-- React Scroll
 
 ## Project Structure
 
 ```text
 src/
   components/        Reusable UI sections and shared presentation components
+  data/              Shared profile and contact details
   hooks/             Client-side data loading hooks
   pages/             Route-level page composition
   types/             Shared TypeScript domain types
@@ -47,6 +45,10 @@ Portfolio content is intentionally kept in static JSON files so it can be update
 - `public/data/education.json`
 
 Project screenshots should be placed in `public/projects/`, then referenced with paths such as `/projects/example.png`.
+
+Toolkit tiles use the `icon` and `category` fields in `tools.json`. Icons are stored in `public/tools/` and sourced from Devicon v2.16.0; the MIT license is included as `public/tools/LICENSE.devicon`.
+
+The first four entries in `projects.json` are featured by default. Shared contact links are defined in `src/data/profile.ts`. Optional demo credentials appear in an expandable panel on a project card.
 
 ## Getting Started
 

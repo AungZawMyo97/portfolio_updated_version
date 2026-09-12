@@ -1,25 +1,19 @@
 import Hero from "../components/Hero";
 import Skills from "../components/Skills";
-import Tools from "../components/Tools";
 import GetInTouch from "../components/GetInTouch";
 import ExperienceTimeline from "../components/ExperienceTimeline";
 import Education from "../components/Education";
 import Projects from "../components/Projects";
-import Footer from "../components/Footer";
 
-const Home = () => {
+export default function Home() {
   return (
     <>
       <Hero />
-      <Skills />
-      <Tools />
       <ExperienceTimeline />
       <Projects />
+      <Skills />
       <Education />
       <GetInTouch />
-      <Footer />
     </>
   );
-};
-
-export default Home;
+}

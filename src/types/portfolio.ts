@@ -6,12 +6,17 @@ export type Project = {
   githubLink: string;
   liveLink: string;
   image: string;
+  demoCredentials?: {
+    username: string;
+    password: string;
+  };
 };
 
 export type Tool = {
   id: number;
   name: string;
-  iconClass?: string;
+  icon?: string;
+  category?: string;
   shortName?: string;
 };
 

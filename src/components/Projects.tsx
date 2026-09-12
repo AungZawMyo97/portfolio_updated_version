@@ -1,120 +1,121 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-
+import { useState } from "react";
 import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
-import ScrollReveal from "./ScrollReveal";
+import TechStack from "./TechStack";
+import ArrowIcon from "./ArrowIcon";
 import useRemoteData from "../hooks/useRemoteData";
+import useScrollReveal from "../hooks/useScrollReveal";
 import type { Project } from "../types/portfolio";
 
-const PROJECTS_ENDPOINT = "/data/projects.json";
+const hasProjectLink = (link: string) => /^https?:\/\//i.test(link.trim());
 
-const hasProjectLink = (link: string) => link.trim() !== "" && link !== "#";
-
-type ProjectCardProps = {
-  project: Project;
-};
-
-const ProjectCard = ({ project }: ProjectCardProps) => {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const reveal = useScrollReveal((index % 2) * 100);
   return (
-    <div className="tactical-card rounded-sm flex flex-col hover:-translate-y-2 transition-transform duration-300 group">
-      <div className="h-48 bg-gray-800 border-b border-pubg-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-pubg-yellow/12 mix-blend-screen group-hover:bg-transparent transition-colors duration-300"></div>
+    <article ref={reveal} className="project-card">
+      <div className="project-image">
         <img
           src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+          alt={`${project.title} application screenshot`}
+          loading="lazy"
+          decoding="async"
         />
+        <span className="project-number">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
-
-      <div className="p-6 md:p-8 flex flex-col grow">
-        <h3 className="display-title text-3xl font-bold text-pubg-text tracking-wide mb-3">
-          {project.title}
-        </h3>
-        <p className="text-pubg-text opacity-80 leading-relaxed mb-6 grow">
-          {project.description}
-        </p>
-
-        <ul className="flex flex-wrap gap-2 mb-8">
-          {project.techStack.map((tech) => (
-            <li
-              key={tech}
-              className="text-xs font-bold text-pubg-dark bg-pubg-yellow px-2 py-1 rounded-sm uppercase"
-            >
-              {tech}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex gap-4 mt-auto pt-4 border-t border-gray-700">
-          {hasProjectLink(project.githubLink) && (
+      <div className="project-body">
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <TechStack items={project.techStack} />
+        {project.demoCredentials ? (
+          <details className="demo-credentials">
+            <summary>Demo account</summary>
+            <p>
+              Username: <code>{project.demoCredentials.username}</code>
+              <br />
+              Password: <code>{project.demoCredentials.password}</code>
+            </p>
+          </details>
+        ) : null}
+        <div className="project-links">
+          {hasProjectLink(project.githubLink) ? (
             <a
+              className="text-link"
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="magnetic-link flex items-center gap-2 text-pubg-text hover:text-pubg-yellow font-semibold"
+              aria-label={`View source for ${project.title}`}
             >
-              <FontAwesomeIcon icon={faGithub} className="text-xl" /> Code
+              View source <ArrowIcon diagonal />
             </a>
-          )}
-          {hasProjectLink(project.liveLink) && (
+          ) : null}
+          {hasProjectLink(project.liveLink) ? (
             <a
+              className="text-link"
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="magnetic-link flex items-center gap-2 text-pubg-text hover:text-pubg-yellow font-semibold"
+              aria-label={`Live demo of ${project.title}`}
             >
-              <FontAwesomeIcon icon={faExternalLinkAlt} /> Live Demo
+              Live demo <ArrowIcon diagonal />
             </a>
-          )}
+          ) : null}
         </div>
       </div>
-    </div>
+    </article>
   );
-};
+}
 
-const Projects = () => {
+export default function Projects() {
+  const [showAll, setShowAll] = useState(false);
   const {
     data: projects,
     isLoading,
     errorMessage,
   } = useRemoteData<Project[]>(
-    PROJECTS_ENDPOINT,
+    "/data/projects.json",
     [],
     "Projects are unavailable right now.",
   );
-
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
   return (
-    <section id="deployments" className="section-frame section-divider bg-pubg-panel/80 py-20 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+    <section id="projects" className="projects-section">
+      <div className="section container">
         <SectionHeading
-          title="Deployments"
-          eyebrow="Selected Builds"
-          description="A selection of my featured personal builds, architectures, and open-source contributions."
+          eyebrow="02 / Selected projects"
+          title="Ideas, put into practice."
+          description="Independent projects exploring business workflows, useful tools, and experiences for the web."
         />
-
         <RemoteDataStatus
           isLoading={isLoading}
           errorMessage={errorMessage}
-          isEmpty={projects.length === 0}
-          loadingMessage="Loading projects..."
+          isEmpty={!projects.length}
+          loadingMessage="Loading projects…"
           emptyMessage="No projects found."
         />
-
-        {!isLoading && !errorMessage && projects.length > 0 && (
-          <ScrollReveal
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-4"
-            delay={120}
-          >
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </ScrollReveal>
-        )}
+        <div className="project-grid" id="project-list">
+          {visibleProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+        {projects.length > 4 ? (
+          <div className="projects-more">
+            <button
+              type="button"
+              className="button button-outline"
+              aria-expanded={showAll}
+              aria-controls="project-list"
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll
+                ? "Show selected projects"
+                : `View all ${projects.length} projects`}
+              <span aria-hidden="true">{showAll ? "−" : "+"}</span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

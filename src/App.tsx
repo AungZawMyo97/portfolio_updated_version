@@ -1,15 +1,18 @@
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Home />
       </main>
+      <Footer />
     </>
   );
 }
-
-export default App;

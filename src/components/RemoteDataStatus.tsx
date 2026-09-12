@@ -16,7 +16,9 @@ const RemoteDataStatus = ({
   const message = isLoading ? loadingMessage : errorMessage || emptyMessage;
 
   return message && (isLoading || errorMessage || isEmpty) ? (
-    <p className="text-center text-pubg-text opacity-80">{message}</p>
+    <p className="data-status" role="status">
+      {message}
+    </p>
   ) : null;
 };
 

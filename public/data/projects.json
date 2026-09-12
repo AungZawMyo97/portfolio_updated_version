@@ -2,8 +2,14 @@
   {
     "id": 1,
     "title": "Daily Balance Tracker",
-    "description": "A high-performance admin dashboard for exchange system to calculate daily exchange transactions and record In and Out transactions, along with profit calculation.",
-    "techStack": ["Next.js", "PostgreSQL", "TypeScript", "JWT", "Authentication"],
+    "description": "An exchange management dashboard for recording daily transactions, tracking incoming and outgoing balances, and calculating profit.",
+    "techStack": [
+      "Next.js",
+      "PostgreSQL",
+      "TypeScript",
+      "JWT",
+      "Authentication"
+    ],
     "githubLink": "https://github.com/AungZawMyo97/sandar_lin_balance_tracker",
     "liveLink": "#",
     "image": "/projects/sdl_balance_tracker.png"
@@ -11,7 +17,7 @@
   {
     "id": 2,
     "title": "Esports Scrim Manager",
-    "description": "An online management tool for Esports admin in PUBG: Battlegrounds and PUBG: Mobile which can calculate match ranking points just by uploading match result screenshots.",
+    "description": "A management tool for PUBG esports organizers that calculates match ranking points from uploaded result screenshots.",
     "techStack": [
       "Next.js",
       "Tailwind CSS",
@@ -27,7 +33,7 @@
   {
     "id": 3,
     "title": "Coffee Shop Template",
-    "description": "A beautiful and eyecatching website for local coffee shop, designed based on the bamboo theme.",
+    "description": "A responsive website template for a local coffee shop, with a bamboo-inspired visual identity and animated page interactions.",
     "techStack": [
       "Next.js",
       "TypeScript",
@@ -66,7 +72,7 @@
   {
     "id": 6,
     "title": "Next.js Weather Forecast App",
-    "description": "A study purpose Next.js application that fetches weather data from a public API and displays it in a user-friendly interface, allowing users to check the current weather and forecast for their location.",
+    "description": "A learning project that integrates the OpenWeather API to display current conditions and forecasts for a selected location.",
     "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "OpenWeather API"],
     "githubLink": "https://github.com/AungZawMyo97/nextjs-weather-forecast",
     "liveLink": "https://nextjs-weather-forecast-beta.vercel.app/",
@@ -75,7 +81,11 @@
   {
     "id": 7,
     "title": "My PM",
-    "description": "A personal project management app built to track project stages like pending review, in progress, and completed. It is made for personal use without team features, and includes a monthly graph for in-progress and completed projects. Demo login: Username: testuser1@mypm.com, PSW: Testing123!@#",
+    "description": "A personal project management application with status tracking and monthly progress charts, designed to organize individual work from review to completion.",
+    "demoCredentials": {
+      "username": "testuser1@mypm.com",
+      "password": "Testing123!@#"
+    },
     "techStack": [
       "Next.js 16",
       "React 19",

@@ -1,147 +1,69 @@
 import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
-import ScrollReveal from "./ScrollReveal";
+import ArrowIcon from "./ArrowIcon";
 import useRemoteData from "../hooks/useRemoteData";
-import type {
-  Certification,
-  EducationContent,
-  EducationRecord,
-} from "../types/portfolio";
+import useScrollReveal from "../hooks/useScrollReveal";
+import type { EducationContent } from "../types/portfolio";
 
-const EMPTY_EDUCATION_CONTENT: EducationContent = {
-  education: [],
-  certifications: [],
-};
-
-const EDUCATION_ENDPOINT = "/data/education.json";
-
-type EducationCardProps = {
-  education: EducationRecord[];
-};
-
-const EducationCard = ({ education }: EducationCardProps) => {
-  return (
-    <div className="tactical-card p-8 md:p-10 rounded-sm hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
-      <h3 className="display-title text-4xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
-        Education
-      </h3>
-
-      <div className="flex flex-col gap-8">
-        {education.map((edu) => (
-          <div key={edu.id} className="flex flex-col gap-2">
-            <div className="flex justify-between items-start gap-4">
-              <h4 className="display-title text-3xl font-bold text-pubg-text tracking-wide">
-                {edu.degree}
-              </h4>
-              <span className="bg-pubg-yellow/10 text-pubg-yellow px-3 py-1 rounded-sm text-sm border border-pubg-yellow/20 font-semibold whitespace-nowrap mt-1">
-                {edu.date}
-              </span>
-            </div>
-            <p className="text-lg text-pubg-yellow font-semibold">
-              {edu.institution}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-type CertificationsCardProps = {
-  certifications: Certification[];
-};
-
-const getCertificationYear = (certification: Certification) => {
-  const yearMatch = certification.date.match(/\d{4}/);
-
-  return yearMatch ? Number(yearMatch[0]) : 0;
-};
-
-const CertificationsCard = ({ certifications }: CertificationsCardProps) => {
-  const sortedCertifications = [...certifications].sort(
-    (currentCertification, nextCertification) =>
-      getCertificationYear(nextCertification) -
-      getCertificationYear(currentCertification),
-  );
-
-  return (
-    <div className="tactical-card p-8 md:p-10 rounded-sm hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
-      <h3 className="display-title text-4xl font-bold text-pubg-text uppercase border-b-2 border-pubg-yellow pb-2 inline-block mb-8 self-start">
-        Certifications
-      </h3>
-
-      <div className="flex flex-col gap-6">
-        {sortedCertifications.map((cert) => (
-          <div
-            key={cert.id}
-            className="flex flex-col gap-2 pb-6 border-b border-gray-700 last:border-0 last:pb-0"
-          >
-            <div className="flex justify-between items-start gap-4">
-              <h4 className="display-title text-2xl font-bold text-pubg-text tracking-wide leading-tight">
-                {cert.title}
-              </h4>
-              <span className="bg-pubg-dark text-pubg-text px-3 py-1 rounded-sm text-sm border border-gray-700 font-semibold whitespace-nowrap mt-1">
-                {cert.date}
-              </span>
-            </div>
-            <p className="text-pubg-yellow font-semibold opacity-90">
-              <a href={cert.link} target="_blank" rel="noopener noreferrer">
-                {cert.issuer}
-              </a>
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Education = () => {
-  const {
-    data: educationContent,
-    isLoading,
-    errorMessage,
-  } = useRemoteData<EducationContent>(
-    EDUCATION_ENDPOINT,
-    EMPTY_EDUCATION_CONTENT,
+const EMPTY_CONTENT: EducationContent = { education: [], certifications: [] };
+export default function Education() {
+  const reveal = useScrollReveal();
+  const { data, isLoading, errorMessage } = useRemoteData<EducationContent>(
+    "/data/education.json",
+    EMPTY_CONTENT,
     "Education records are unavailable right now.",
   );
-
-  const hasEducationRecords =
-    educationContent.education.length > 0 ||
-    educationContent.certifications.length > 0;
-
+  const certifications = [...data.certifications].sort(
+    (a, b) =>
+      Number(b.date.match(/\d{4}/)?.[0] ?? 0) -
+      Number(a.date.match(/\d{4}/)?.[0] ?? 0),
+  );
   return (
-    <section className="section-frame section-divider bg-pubg-dark/95 py-20 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
-        <SectionHeading
-          title="Academy Record"
-          eyebrow="Credentials"
-          description="Formal education and foundational technical certifications."
-        />
-
-        <RemoteDataStatus
-          isLoading={isLoading}
-          errorMessage={errorMessage}
-          isEmpty={!hasEducationRecords}
-          loadingMessage="Loading education records..."
-          emptyMessage="No education records found."
-        />
-
-        {!isLoading && !errorMessage && hasEducationRecords && (
-          <ScrollReveal
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
-            delay={120}
-          >
-            <EducationCard education={educationContent.education} />
-            <CertificationsCard
-              certifications={educationContent.certifications}
-            />
-          </ScrollReveal>
-        )}
+    <section className="section education-section container">
+      <SectionHeading
+        eyebrow="04 / Education & learning"
+        title="Always building on the fundamentals."
+      />
+      <RemoteDataStatus
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+        isEmpty={!data.education.length && !certifications.length}
+        loadingMessage="Loading education…"
+        emptyMessage="No education records found."
+      />
+      <div className="education-grid">
+        <div>
+          <h3 className="eyebrow">Education</h3>
+          {data.education.map((item) => (
+            <article ref={reveal} className="education-record" key={item.id}>
+              <p className="record-date">{item.date}</p>
+              <h4>{item.degree}</h4>
+              <p>{item.institution}</p>
+            </article>
+          ))}
+        </div>
+        <div>
+          <h3 className="eyebrow">Certifications</h3>
+          {certifications.map((item) => (
+            <a
+              ref={reveal}
+              className="certification"
+              key={item.id}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div>
+                <h4>{item.title}</h4>
+                <p>
+                  {item.issuer} · {item.date}
+                </p>
+              </div>
+              <ArrowIcon diagonal />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Education;
+}

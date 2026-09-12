@@ -1,22 +1,12 @@
-import ScrollReveal from "./ScrollReveal";
-
-const Footer = () => {
+import { profile } from "../data/profile";
+export default function Footer() {
   return (
-    <section className="bg-pubg-dark/95 py-8 px-6 border-t border-pubg-yellow/10 shadow-[0_-18px_55px_rgba(0,0,0,0.22)]">
-      <ScrollReveal className="text-center flex flex-col gap-2" variant="up">
-        <p className="display-title text-xl md:text-2xl opacity-90 tracking-wider text-pubg-text uppercase font-semibold">
-          Designed & Developed By AZM{" "}
-          <span className="text-pubg-yellow inline-block hover:-translate-y-1 transform duration-200 cursor-default">
-            nostaLgic
-          </span>
-        </p>
-
-        <p className="text-sm md:text-base text-pubg-text opacity-60 font-medium">
-          &copy; {new Date().getFullYear()} All Rights Reserved
-        </p>
-      </ScrollReveal>
-    </section>
+    <footer className="container site-footer">
+      <p>
+        © {new Date().getFullYear()} {profile.name}
+      </p>
+      <p>Built with React & TypeScript. Made with care.</p>
+      <a href="#about">Back to top ↑</a>
+    </footer>
   );
-};
-
-export default Footer;
+}

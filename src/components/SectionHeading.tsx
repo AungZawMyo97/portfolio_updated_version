@@ -1,4 +1,4 @@
-import ScrollReveal from "./ScrollReveal";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 type SectionHeadingProps = {
   title: string;
@@ -6,26 +6,22 @@ type SectionHeadingProps = {
   eyebrow?: string;
   className?: string;
 };
-
-const SectionHeading = ({
+export default function SectionHeading({
   title,
   description,
-  eyebrow = "Portfolio Intel",
+  eyebrow,
   className = "",
-}: SectionHeadingProps) => {
+}: SectionHeadingProps) {
+  const reveal = useScrollReveal();
   return (
-    <ScrollReveal className={`text-center ${className}`} variant="pop">
-      <span className="eyebrow-line mb-3">{eyebrow}</span>
-      <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
-        {title}
-      </h2>
+    <div ref={reveal} className={`section-heading ${className}`}>
+      <div>
+        {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+        <h2>{title}</h2>
+      </div>
       {description ? (
-        <p className="text-xl text-pubg-text opacity-90 mt-4 max-w-2xl mx-auto normal-case tracking-normal leading-relaxed">
-          {description}
-        </p>
+        <p className="section-description">{description}</p>
       ) : null}
-    </ScrollReveal>
+    </div>
   );
-};
-
-export default SectionHeading;
+}

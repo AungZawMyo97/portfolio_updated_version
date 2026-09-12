@@ -1,129 +1,53 @@
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
-import ScrollReveal from "./ScrollReveal";
+import SectionHeading from "./SectionHeading";
+import TechStack from "./TechStack";
+import Tools from "./Tools";
+import useScrollReveal from "../hooks/useScrollReveal";
 
-type SkillScore = {
-  label: string;
-  score: number;
-};
-
-type SkillGroup = {
-  title: string;
-  textClassName: string;
-  skills: SkillScore[];
-};
-
-const SKILL_GROUPS: SkillGroup[] = [
+const SKILL_GROUPS = [
   {
-    title: "Enterprise Loadout",
-    textClassName: "text-pubg-yellow",
-    skills: [
-      { label: "C#", score: 90 },
-      { label: ".NET/.NET Core", score: 95 },
-      { label: "Umbraco", score: 80 },
-      { label: "SQL", score: 85 },
-    ],
+    title: "Backend engineering",
+    description:
+      "APIs, financial workflows, and enterprise applications with a focus on reliable data and clear business logic.",
+    skills: ["C#", ".NET / ASP.NET Core", "REST APIs", "Umbraco", "SQL"],
   },
   {
-    title: "Field Experience",
-    textClassName: "text-emerald-400",
-    skills: [
-      { label: "React", score: 75 },
-      { label: "Node", score: 80 },
-      { label: "Express", score: 80 },
-      { label: "Next.js", score: 60 },
-    ],
+    title: "Full stack development",
+    description:
+      "Responsive interfaces connected to practical backend services, from dashboards to complete web applications.",
+    skills: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS"],
+  },
+  {
+    title: "Delivery & collaboration",
+    description:
+      "Taking work from requirements through deployment, collaborating across teams, and supporting live systems.",
+    skills: ["IIS", "AWS", "Git", "API integration", "Production support"],
   },
 ];
-
-const SUPPORT_SKILLS = [
-  "Effective Communication",
-  "Team Collaboration",
-  "Problem Solving",
-  "Time Management",
-];
-
-type SkillGroupCardProps = {
-  group: SkillGroup;
-  shouldAnimate: boolean;
-};
-
-const SkillGroupCard = ({ group, shouldAnimate }: SkillGroupCardProps) => {
+export default function Skills() {
+  const reveal = useScrollReveal();
   return (
-    <div className="tactical-card p-8 rounded-sm text-left hover:-translate-y-2 transition-transform duration-300">
-      <h3 className="display-title text-3xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
-        {group.title}
-      </h3>
-      <ul className="flex flex-col gap-4 text-lg">
-        {group.skills.map((skill) => (
-          <li
-            key={skill.label}
-            className={`flex justify-between items-center ${group.textClassName}`}
+    <section id="expertise" className="section container">
+      <SectionHeading
+        eyebrow="03 / Technical expertise"
+        title="The right tools. A solid foundation."
+        description="A backend foundation, a full stack perspective, and ownership from first requirement to production."
+      />
+      <div className="skills-grid">
+        {SKILL_GROUPS.map((group, index) => (
+          <article
+            ref={reveal}
+            data-reveal-delay={index * 90}
+            className="skill-card"
+            key={group.title}
           >
-            <span>{skill.label}</span>
-            <span>
-              {shouldAnimate ? <CountUp end={skill.score} duration={2} /> : 0}%
-            </span>
-          </li>
+            <span className="skill-index">0{index + 1}</span>
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+            <TechStack items={group.skills} />
+          </article>
         ))}
-      </ul>
-    </div>
-  );
-};
-
-const Skills = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
-
-  return (
-    <section
-      ref={ref}
-      className="section-frame section-divider bg-pubg-dark/95 py-20 px-6"
-      id="loadout"
-    >
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 text-center">
-        <ScrollReveal className="max-w-3xl flex flex-col items-center gap-6" variant="pop">
-          <span className="eyebrow-line">Capability Matrix</span>
-          <h2 className="display-title text-5xl lg:text-7xl font-bold tracking-wider text-pubg-yellow uppercase">
-            Technical Arsenal
-          </h2>
-          <p className="text-xl text-pubg-text opacity-90 leading-relaxed normal-case">
-            The complete loadout. A breakdown of the languages, frameworks, and
-            interpersonal skills I've equipped through years of deploying
-            scalable, full-stack applications in enterprise environments.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-10"
-          delay={120}
-        >
-          {SKILL_GROUPS.map((group) => (
-            <SkillGroupCard
-              key={group.title}
-              group={group}
-              shouldAnimate={inView}
-            />
-          ))}
-
-          <div className="tactical-card p-8 rounded-sm text-left hover:-translate-y-2 transition-transform duration-300 md:col-span-2 lg:col-span-1">
-            <h3 className="display-title text-3xl font-bold text-pubg-text mb-6 uppercase border-b-2 border-pubg-yellow pb-2 inline-block">
-              Tactical Support
-            </h3>
-            <ul className="flex flex-col gap-4 text-lg text-pubg-text opacity-90">
-              {SUPPORT_SKILLS.map((skill) => (
-                <li key={skill} className="flex items-center gap-2">
-                  <span className="text-pubg-yellow">▸</span> {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </ScrollReveal>
       </div>
+      <Tools />
     </section>
   );
-};
-
-export default Skills;
+}

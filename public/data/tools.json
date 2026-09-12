@@ -2,51 +2,61 @@
   {
     "id": 1,
     "name": "VS Code",
-    "iconClass": "devicon-vscode-plain colored"
+    "icon": "/tools/vscode.svg",
+    "category": "Code editor"
   },
   {
     "id": 2,
     "name": "Visual Studio",
-    "iconClass": "devicon-visualstudio-plain colored"
+    "icon": "/tools/visualstudio.svg",
+    "category": ".NET development"
   },
   {
     "id": 3,
     "name": "Postman",
-    "iconClass": "devicon-postman-plain colored"
+    "icon": "/tools/postman.svg",
+    "category": "API testing"
   },
   {
     "id": 4,
     "name": "SQL Server",
-    "iconClass": "devicon-microsoftsqlserver-plain colored"
+    "icon": "/tools/microsoftsqlserver.svg",
+    "category": "Database"
   },
   {
     "id": 5,
     "name": "MySQL",
-    "iconClass": "devicon-mysql-original colored"
+    "icon": "/tools/mysql.svg",
+    "category": "Database"
   },
   {
     "id": 6,
     "name": "Figma",
-    "iconClass": "devicon-figma-plain"
+    "icon": "/tools/figma.svg",
+    "category": "Interface design"
   },
   {
     "id": 7,
     "name": "Git",
-    "iconClass": "devicon-git-plain colored"
+    "icon": "/tools/git.svg",
+    "category": "Version control"
   },
   {
     "id": 8,
     "name": "GitHub",
-    "iconClass": "devicon-github-original"
+    "icon": "/tools/github.svg",
+    "category": "Code collaboration"
   },
   {
     "id": 9,
     "name": "GitLab",
-    "iconClass": "devicon-gitlab-plain-wordmark"
+    "icon": "/tools/gitlab.svg",
+    "category": "Code collaboration"
   },
   {
     "id": 10,
     "name": "AWS",
-    "iconClass": "devicon-amazonwebservices-plain-wordmark"
+    "icon": "/tools/amazonwebservices.svg",
+    "category": "Cloud platform"
   }
 ]

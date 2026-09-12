@@ -6,7 +6,7 @@ type RemoteDataState<T> = {
   errorMessage: string;
 };
 
-const useRemoteData = <T,>(
+const useRemoteData = <T>(
   endpoint: string,
   initialData: T,
   errorMessage: string,
@@ -19,6 +19,8 @@ const useRemoteData = <T,>(
     const controller = new AbortController();
 
     const loadData = async () => {
+      setIsLoading(true);
+      setResolvedErrorMessage("");
       try {
         const response = await fetch(endpoint, {
           signal: controller.signal,
@@ -30,15 +32,18 @@ const useRemoteData = <T,>(
 
         const remoteData = (await response.json()) as T;
 
-        setData(remoteData);
+        if (!controller.signal.aborted) setData(remoteData);
       } catch (error) {
-        if (error instanceof DOMException && error.name === "AbortError") {
+        if (
+          controller.signal.aborted ||
+          (error instanceof DOMException && error.name === "AbortError")
+        ) {
           return;
         }
 
         setResolvedErrorMessage(errorMessage);
       } finally {
-        setIsLoading(false);
+        if (!controller.signal.aborted) setIsLoading(false);
       }
     };
 
