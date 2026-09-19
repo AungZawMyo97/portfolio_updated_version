@@ -1,93 +1,62 @@
 import ArrowIcon from "./ArrowIcon";
+import SocialLinks from "./SocialLinks";
 import { profile } from "../data/profile";
 
 export default function Hero() {
   return (
-    <section id="about" className="hero container">
-      <div className="hero-intro">
-        <span className="eyebrow">
-          Software engineer / Backend & full stack
-        </span>
+    <section id="home" className="hero">
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow hero-label">
+            <span /> Software engineer · Based in Thailand
+          </p>
+          <p className="hero-kicker">Hello! I’m</p>
+          <h1>
+            Aung{" "}
+            <br />
+            Zaw Myo<span>.</span>
+          </h1>
+          <p className="hero-description">
+            Thoughtful code. Dependable systems.
+            <br />
+            Backend engineering, .NET, and full stack experiences
+            <br className="desktop-break" /> built for the real world.
+          </p>
+          <div className="hero-actions">
+            <a className="button" href="#projects">
+              Explore my work <ArrowIcon />
+            </a>
+            <a className="text-link" href="#contact">
+              Let’s talk <ArrowIcon diagonal />
+            </a>
+          </div>
+        </div>
+        <div className="hero-visual">
+          <div className="portrait-orbit orbit-outer" aria-hidden="true" />
+          <div className="portrait-orbit orbit-inner" aria-hidden="true" />
+          <div className="portrait-frame">
+            <img
+              className="hero-portrait"
+              src="/profile/dark-portfolio.png"
+              alt={`${profile.name} wearing a dark suit`}
+              width={360}
+              height={360}
+              fetchPriority="high"
+            />
+          </div>
+          <span className="portrait-caption">The person behind the code</span>
+          <SocialLinks className="hero-socials" />
+        </div>
+      </div>
+      <div className="container hero-bottom">
         <span className="availability">
           <span /> Open to opportunities
         </span>
-      </div>
-      <div className="hero-grid">
-        <div>
-          <p className="hero-name">Hello, I’m Aung Zaw Myo.</p>
-          <h1>
-            Complex systems.
-            <br />
-            <span>Clear solutions.</span>
-          </h1>
-          <p className="hero-description">
-            I build reliable backend systems and thoughtful web applications.
-            Over 4 years working across financial services, enterprise
-            platforms, and the full development lifecycle.
-          </p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="#projects">
-              Explore my work <ArrowIcon />
-            </a>
-            <a
-              className="text-link"
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub <ArrowIcon diagonal />
-            </a>
-          </div>
-        </div>
-        <aside className="profile-note" aria-label="Engineering focus">
-          <div className="note-heading">
-            <span className="eyebrow">My focus</span>
-            <span className="note-symbol" aria-hidden="true">
-              {"{ }"}
-            </span>
-          </div>
-          <h2>
-            Built with care.
-            <br />
-            Ready for the real world.
-          </h2>
-          <p>
-            From payment integrations to production deployments, I turn business
-            requirements into software people can depend on.
-          </p>
-          <dl>
-            <div>
-              <dt>Specialty</dt>
-              <dd>C# / .NET / REST APIs</dd>
-            </div>
-            <div>
-              <dt>Based in</dt>
-              <dd>Thailand · Open to remote</dd>
-            </div>
-          </dl>
-          <a
-            className="text-link"
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Connect on LinkedIn <ArrowIcon diagonal />
-          </a>
-        </aside>
-      </div>
-      <div className="hero-summary">
-        <div>
-          <strong>
-            04<span>+</span>
-          </strong>
-          <span>Years of professional experience</span>
-        </div>
-        <div>
-          <strong>Backend first.</strong>
-          <span>Full stack when it matters.</span>
-        </div>
-        <a href="#experience">
-          A closer look at my experience <span aria-hidden="true">↓</span>
+        <p>
+          Backend first. <span>Full stack when it matters.</span>
+        </p>
+        <a href="#about" className="scroll-link">
+          A little about me <span aria-hidden="true">↓</span>
         </a>
       </div>
     </section>

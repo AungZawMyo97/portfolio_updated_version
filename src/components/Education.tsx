@@ -1,18 +1,10 @@
-import RemoteDataStatus from "./RemoteDataStatus";
 import SectionHeading from "./SectionHeading";
 import ArrowIcon from "./ArrowIcon";
-import useRemoteData from "../hooks/useRemoteData";
+import { education as data } from "../data/portfolio";
 import useScrollReveal from "../hooks/useScrollReveal";
-import type { EducationContent } from "../types/portfolio";
 
-const EMPTY_CONTENT: EducationContent = { education: [], certifications: [] };
 export default function Education() {
   const reveal = useScrollReveal();
-  const { data, isLoading, errorMessage } = useRemoteData<EducationContent>(
-    "/data/education.json",
-    EMPTY_CONTENT,
-    "Education records are unavailable right now.",
-  );
   const certifications = [...data.certifications].sort(
     (a, b) =>
       Number(b.date.match(/\d{4}/)?.[0] ?? 0) -
@@ -21,15 +13,8 @@ export default function Education() {
   return (
     <section className="section education-section container">
       <SectionHeading
-        eyebrow="04 / Education & learning"
-        title="Always building on the fundamentals."
-      />
-      <RemoteDataStatus
-        isLoading={isLoading}
-        errorMessage={errorMessage}
-        isEmpty={!data.education.length && !certifications.length}
-        loadingMessage="Loading education…"
-        emptyMessage="No education records found."
+        eyebrow="05 / Always learning"
+        title="Curiosity is a constant."
       />
       <div className="education-grid">
         <div>

@@ -2,9 +2,10 @@ import { useRef, useState } from "react";
 import ArrowIcon from "./ArrowIcon";
 
 const NAV_ITEMS = [
-  { label: "Experience", target: "experience" },
-  { label: "Projects", target: "projects" },
+  { label: "About", target: "about" },
   { label: "Expertise", target: "expertise" },
+  { label: "Work", target: "projects" },
+  { label: "Experience", target: "experience" },
   { label: "Contact", target: "contact" },
 ];
 
@@ -24,7 +25,7 @@ export default function Navbar() {
       <div className="container nav-inner">
         <a
           className="wordmark"
-          href="#about"
+          href="#home"
           aria-label="Aung Zaw Myo, home"
           onClick={() => setIsMenuOpen(false)}
         >

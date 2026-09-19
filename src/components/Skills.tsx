@@ -28,9 +28,9 @@ export default function Skills() {
   return (
     <section id="expertise" className="section container">
       <SectionHeading
-        eyebrow="03 / Technical expertise"
-        title="The right tools. A solid foundation."
-        description="A backend foundation, a full stack perspective, and ownership from first requirement to production."
+        eyebrow="02 / What I bring to the table"
+        title="Built on strong foundations."
+        description="From the systems you rely on to the interfaces you interact with. Here’s where I can help."
       />
       <div className="skills-grid">
         {SKILL_GROUPS.map((group, index) => (

@@ -3,10 +3,11 @@ export default function Footer() {
   return (
     <footer className="container site-footer">
       <p>
-        © {new Date().getFullYear()} {profile.name}
+        © <span suppressHydrationWarning>{new Date().getFullYear()}</span>{" "}
+        {profile.name}
       </p>
       <p>Built with React & TypeScript. Made with care.</p>
-      <a href="#about">Back to top ↑</a>
+      <a href="#home">Back to top ↑</a>
     </footer>
   );
 }

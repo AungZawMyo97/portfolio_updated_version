@@ -17,7 +17,6 @@ export type Tool = {
   name: string;
   icon?: string;
   category?: string;
-  shortName?: string;
 };
 
 export type Experience = {

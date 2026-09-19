@@ -47,11 +47,11 @@ export default function GetInTouch() {
     <section id="contact" className="contact-section">
       <div ref={reveal} className="container section contact-grid">
         <div className="contact-copy">
-          <p className="eyebrow">05 / Get in touch</p>
+          <p className="eyebrow">06 / Let’s build something</p>
           <h2>
-            Good software starts
+            Great work starts
             <br />
-            with a conversation.
+            <em>with a conversation.</em>
           </h2>
           <p>
             Looking for a developer to join your team or help bring a project to
@@ -80,6 +80,15 @@ export default function GetInTouch() {
             borders.
           </p>
         </div>
+        <noscript>
+          <p>
+            To get in touch,{" "}
+            <a className="text-link" href={`mailto:${profile.email}`}>
+              email me directly <ArrowIcon diagonal />
+            </a>
+            .
+          </p>
+        </noscript>
         <form
           ref={form}
           onSubmit={sendEmail}
@@ -131,11 +140,7 @@ export default function GetInTouch() {
               <p className={`form-status ${status.kind}`}>{status.message}</p>
             ) : null}
           </div>
-          <button
-            className="button button-light"
-            type="submit"
-            disabled={isSending}
-          >
+          <button className="button" type="submit" disabled={isSending}>
             {isSending ? "Sending message…" : "Send message"}
             <ArrowIcon />
           </button>

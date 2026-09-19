@@ -4,18 +4,41 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/cormorant-garamond-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <meta
-      name="description"
-      content="Aung Zaw Myo — software engineer with 4+ years of experience in C#, .NET, financial services, and full stack web development. Based in Thailand, open to remote opportunities."
+    <link
+      rel="preload"
+      href="/fonts/dm-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <meta name="theme-color" content="#f7f7f2" />
-    <title>Aung Zaw Myo — Software Engineer</title>
+    <meta name="theme-color" content="#232634" />
+    <noscript>
+      <style>
+        .contact-form,
+        .site-header .menu-button,
+        .projects-more {
+          display: none;
+        }
+        .site-header .desktop-nav {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .site-header .nav-inner {
+          height: auto;
+          min-height: 96px;
+          flex-wrap: wrap;
+          gap: 16px;
+          padding-block: 16px;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
