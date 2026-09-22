@@ -57,7 +57,9 @@ export default function Navbar() {
         id="mobile-navigation"
         aria-label="Mobile navigation"
         className="mobile-nav"
-        hidden={!isMenuOpen}
+        data-open={isMenuOpen}
+        aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
       >
         {NAV_ITEMS.map((item) => (
           <a
